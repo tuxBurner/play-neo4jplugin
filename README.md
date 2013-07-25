@@ -3,8 +3,10 @@
 This is a simple Play 2.1.2 plugin, for NEO4J.
 
 I got the ideas how to do it from https://github.com/tomasmuller/playframework-neo4j-template THANKS A LOT @tomasmuller for giving me the ground ideas :)
+
 What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
-So here we go, a created this plugin :=
+
+So here we go, a created this plugin :)
 
 
 ## Installation (using sbt)
@@ -38,8 +40,9 @@ neo4j.embeddedDB="target/neo4j-db" # where to put the embedded database
 
 ## Usage
 
-All neo4j relevant stuff must go to app/neo4j/
-All neo4j repositories go to app/neo4j/repositories/
+All neo4j relevant stuff must go to `app/neo4j/`
+
+All neo4j repositories go to `app/neo4j/repositories/`
 
 
 You need a class which must extend from `plugins.neo4j.ServiceProvider` and must be configured in the `application.conf` under the key `neo4j.serviceProviderClass`:
@@ -59,10 +62,12 @@ Example:
 
 ```
 
-To access your repository you can call: Neo4JServiceProvider.get().neoUserRepository.<do magic neo4j stuff>
-To access the neo4jtemplate you can call: Neo4JServiceProvider.get().template.<do magic neo4j stuff>
+To access your repository you can call: `Neo4JServiceProvider.get().neoUserRepository.<do magic neo4j stuff>`
 
-There is also a @Transactional annotation which I addopted from the play jpa plugin.
+To access the neo4jtemplate you can call: `Neo4JServiceProvider.get().template.<do magic neo4j stuff>`
+
+There is also a `@Transactional` annotation which I addopted from the play jpa plugin.
+
 Just annotate your Result with it and it runs in a neo4j Transaction.
 
 Example: 
