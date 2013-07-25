@@ -1,0 +1,6 @@
+target/
+.idea/
+.idea_modules/
+.settings/
+*.iml
+user.sbt
