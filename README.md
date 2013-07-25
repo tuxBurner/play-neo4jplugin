@@ -81,10 +81,9 @@ Example:
   }  
 ```
 
-Take a look into the example 
+Take a look into the examples
 
 ## TODO
-Make an example project !!111!!!
 
 Add a configuration to call neo4j over rest
 
