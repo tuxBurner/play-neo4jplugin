@@ -6,7 +6,7 @@ I got the ideas how to do it from https://github.com/tomasmuller/playframework-n
 
 What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 
-So here we go, a created this plugin :)
+So here we go, i created this plugin :)
 
 
 ## Installation (using sbt)

@@ -94,7 +94,7 @@ public class Neo4JPlugin extends Plugin {
 
 
     /**
-     * Run a block of code in a JPA transaction.
+     * Run a block of code in a NEO4J transaction.
      *
      * @param block    Block of code to execute.
      */

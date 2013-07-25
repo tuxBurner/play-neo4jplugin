@@ -19,11 +19,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
 /**
- * Created with IntelliJ IDEA.
- * User: tuxburner
- * Date: 7/18/13
- * Time: 4:28 PM
- * To change this template use File | Settings | File Templates.
+ * @author tuxburner
+ * Neo4j Plugin with spring data
  */
 @EnableTransactionManagement
 @Configuration
