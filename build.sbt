@@ -1,6 +1,6 @@
-name := "play-neo4plugin"
+name := "play-neo4jplugin"
 
-version := "1.0.0"
+version := "1.0.1"
 
 organization := "com.github.tuxBurner"
 
@@ -33,8 +33,8 @@ libraryDependencies ++= Seq(
 )
 
 publishTo <<= version {
-  case v if v.trim.endsWith("SNAPSHOT") => Some(Resolver.file("Github Pages", Path.userHome / "workspace_play" / "tuxburner.github.io" / "repo-snapshots" asFile))
-  case _ => Some(Resolver.file("Github Pages", Path.userHome / "workspace_play" / "tuxburner.github.io" / "repo" asFile))
+  case v if v.trim.endsWith("SNAPSHOT") => Some(Resolver.file("Github Pages", Path.userHome / "workspace_play" / "tuxBurner.github.io" / "repo-snapshots" asFile))
+  case _ => Some(Resolver.file("Github Pages", Path.userHome / "workspace_play" / "tuxBurner.github.io" / "repo" asFile))
 }
 
 javacOptions ++= Seq("-source", "1.6")

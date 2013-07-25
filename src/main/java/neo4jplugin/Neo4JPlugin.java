@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import play.Application;
 import play.Logger;
 import play.Plugin;
+import play.api.Play;
 
 import java.lang.annotation.Annotation;
 
@@ -42,7 +43,8 @@ public class Neo4JPlugin extends Plugin {
             return;
         }
         try {
-            serviceProviderClass = Class.forName(serviceProviderClassName);
+            final ClassLoader classLoader = Play.classloader(Play.current());
+            serviceProviderClass = Class.forName(serviceProviderClassName,false,classLoader);
             Annotation annotation = serviceProviderClass.getAnnotation(Component.class);
             if(annotation == null) {
                 if(Logger.isErrorEnabled()) {
