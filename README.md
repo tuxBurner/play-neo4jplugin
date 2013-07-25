@@ -80,5 +80,7 @@ Take a look into the example
 
 ## TODO
 Make an example project !!111!!!
+
 Add a configuration to call neo4j over rest
+
 Make the spring configuration configable with the play configuration so the neo4j stuff has not to be in the folder app/neoj do the same with the repositories.
