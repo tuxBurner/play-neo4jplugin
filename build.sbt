@@ -5,10 +5,10 @@ version := "1.0.1"
 organization := "com.github.tuxBurner"
 
 resolvers ++= Seq(
-"Typesafe Releases" at "http://repo.typesafe.com/typesafe/releases/",
-"Spring releases" at "http://repo.springsource.org/release",
-"Spring Data snapshot" at "http://repo.springsource.org/snapshot/",
-"Neo4j" at "http://m2.neo4j.org/content/repositories/releases/"
+  "Typesafe Releases" at "http://repo.typesafe.com/typesafe/releases/",
+  "Spring releases" at "http://repo.springsource.org/release",
+  "Spring Data snapshot" at "http://repo.springsource.org/snapshot/",
+  "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/"
 )
 
 scalaVersion := "2.10.0"

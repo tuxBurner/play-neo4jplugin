@@ -14,7 +14,8 @@ So here we go, i created this plugin :)
 You will need to add the following resolver in your `project/Build.scala` file:
 
 ```scala
-resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo"
+resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo",
+resolvers += "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/"
 ```
 
 Add a dependency on the following artifact:
