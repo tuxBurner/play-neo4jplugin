@@ -1,6 +1,6 @@
 name := "play-neo4jplugin"
 
-version := "1.0.1"
+version := "1.0.2"
 
 organization := "com.github.tuxBurner"
 
@@ -20,8 +20,8 @@ libraryDependencies ++= Seq(
     "javax.inject" % "javax.inject" % "1",
     "asm" % "asm" % "3.3.1",
     "org.springframework" % "spring-context" % "3.2.2.RELEASE",
-    "org.springframework.data" % "spring-data-neo4j" % "2.2.1.RELEASE",
-    "org.springframework.data" % "spring-data-neo4j-rest" % "2.2.1.RELEASE" excludeAll(
+    "org.springframework.data" % "spring-data-neo4j" % "2.2.2.RELEASE",
+    "org.springframework.data" % "spring-data-neo4j-rest" % "2.2.2.RELEASE" excludeAll(
       ExclusionRule(organization = "org.neo4j", name="neo4j")
       ),
     "org.neo4j" % "neo4j" % "1.9.RC1" excludeAll(

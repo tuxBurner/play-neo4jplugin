@@ -21,7 +21,7 @@ resolvers += "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/"
 Add a dependency on the following artifact:
 
 ```scala
-libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.0.1"
+libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.0.2"
 ```
 
 Activate the plugin in the `conf/play.plugins` like this:
@@ -83,6 +83,9 @@ Example:
 ```
 
 Take a look into the examples
+
+## Versions
+1.0.2: New Spring-Data-2.2.2 Version Dep. 
 
 ## TODO
 
