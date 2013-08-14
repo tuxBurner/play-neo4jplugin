@@ -1,4 +1,4 @@
-package plugins.neo4j;
+package neo4jplugin;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

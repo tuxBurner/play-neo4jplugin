@@ -1,4 +1,4 @@
-package plugins.neo4j;
+package neo4jplugin;
 
 
 import play.mvc.Action;

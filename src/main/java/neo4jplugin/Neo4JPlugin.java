@@ -1,4 +1,4 @@
-package plugins.neo4j;
+package neo4jplugin;
 
 import com.typesafe.config.ConfigFactory;
 import org.apache.commons.lang.StringUtils;
@@ -60,7 +60,14 @@ public class Neo4JPlugin extends Plugin {
         }
 
 
-        springContext = new AnnotationConfigApplicationContext(EmbbededNeo4jConfig.class);
+        final String mode = ConfigFactory.load().getString("neo4j.mode");
+        if(mode.equals("embedded")) {
+          springContext = new AnnotationConfigApplicationContext(EmbbededNeo4jConfig.class);
+        }
+
+        if(springContext == null) {
+            Logger.error("Could not load config must be: embedded or embeddedWithWebServer");
+        }
         springContext.start();
         springContext.getAutowireCapableBeanFactory().autowireBean(serviceProviderClass);
         springContext.registerShutdownHook();
