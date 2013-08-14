@@ -1,13 +1,13 @@
 name := "play-neo4jplugin"
 
-version := "1.0.2"
+version := "1.0.3-SNAPSHOT"
 
 organization := "com.github.tuxBurner"
 
 resolvers ++= Seq(
   "Typesafe Releases" at "http://repo.typesafe.com/typesafe/releases/",
   "Spring releases" at "http://repo.springsource.org/release",
-  "Spring Data snapshot" at "http://repo.springsource.org/snapshot/",
+//  "Spring Data snapshot" at "http://repo.springsource.org/snapshot/",
   "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/"
 )
 
@@ -24,10 +24,7 @@ libraryDependencies ++= Seq(
     "org.springframework.data" % "spring-data-neo4j-rest" % "2.2.2.RELEASE" excludeAll(
       ExclusionRule(organization = "org.neo4j", name="neo4j")
       ),
-    "org.neo4j" % "neo4j" % "1.9.RC1" excludeAll(
-      ExclusionRule(organization = "org.neo4j", name="neo4j-kernel")
-      ),
-    "org.neo4j" % "neo4j-kernel" % "1.9.RC1" % "test" classifier "tests" classifier "",
+    "org.neo4j" % "neo4j" % "1.9.2", 
     "org.neo4j" % "neo4j-rest-graphdb" % "1.9.M04"
 )
 
