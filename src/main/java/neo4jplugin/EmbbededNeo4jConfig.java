@@ -34,7 +34,7 @@ public class EmbbededNeo4jConfig extends Neo4jConfiguration {
         }
         GraphDatabaseFactory graphDatabaseFactory = new GraphDatabaseFactory();
 
-        return graphDatabaseFactory.newEmbeddedDatabase(embeddedDBPath);
+        return graphDatabaseFactory.newEmbeddedDatabase(embeddedDB);
     }
 
     @Bean
