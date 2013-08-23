@@ -93,6 +93,7 @@ Take a look into the examples
 
 ## Versions
 1.0.2: New Spring-Data-2.2.2 Version Dep. 
+
 1.0.7: RestConfiguration and added AuditingEventListener 
 
 ## TODO
