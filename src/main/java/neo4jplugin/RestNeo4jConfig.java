@@ -5,10 +5,7 @@ import org.neo4j.graphdb.GraphDatabaseService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.auditing.IsNewAwareAuditingHandler;
 import org.springframework.data.neo4j.config.EnableNeo4jRepositories;
-import org.springframework.data.neo4j.config.Neo4jConfiguration;
-import org.springframework.data.neo4j.lifecycle.AuditingEventListener;
 import org.springframework.data.neo4j.rest.SpringRestGraphDatabase;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -20,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableNeo4jRepositories(basePackages = "neo4j.repositories")
 @ComponentScan("neo4j")
-public class RestNeo4jConfig extends Neo4jConfiguration {
+public class RestNeo4jConfig extends  Neo4JBaseConfiguration {
 
     private static  String  REST_DB_HOST_CFG_KEY = "neo4j.restDB.host";
     private static  String  REST_DB_USER_CFG_KEY = "neo4j.restDB.user";
@@ -35,10 +32,5 @@ public class RestNeo4jConfig extends Neo4jConfiguration {
         SpringRestGraphDatabase springRestGraphDatabase = new SpringRestGraphDatabase(restDbHost,restDbUser,restDbPassword);
 
         return springRestGraphDatabase;
-    }
-
-    @Bean
-    public AuditingEventListener auditingEventListener() throws Exception {
-        return new AuditingEventListener(new IsNewAwareAuditingHandler<Object>(isNewStrategyFactory()));
     }
 }
