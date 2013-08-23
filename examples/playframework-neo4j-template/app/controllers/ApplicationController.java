@@ -5,7 +5,7 @@ import neo4j.services.GalaxyService;
 import neo4j.services.Neo4JServiceProvider;
 import play.mvc.Controller;
 import play.mvc.Result;
-import plugins.neo4j.Transactional;
+import neo4jplugin.Transactional;
 
 import java.util.List;
 

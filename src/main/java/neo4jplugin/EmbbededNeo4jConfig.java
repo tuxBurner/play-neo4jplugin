@@ -2,21 +2,16 @@ package neo4jplugin;
 
 import com.typesafe.config.ConfigFactory;
 import org.apache.commons.lang.StringUtils;
-import org.neo4j.kernel.EmbeddedGraphDatabase;
-
-import org.neo4j.kernel.GraphDatabaseAPI;
-import org.neo4j.kernel.impl.transaction.SpringTransactionManager;
-import org.neo4j.kernel.impl.transaction.UserTransactionImpl;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.auditing.IsNewAwareAuditingHandler;
 import org.springframework.data.neo4j.config.EnableNeo4jRepositories;
-import org.springframework.data.neo4j.config.JtaTransactionManagerFactoryBean;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.data.neo4j.lifecycle.AuditingEventListener;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.jta.JtaTransactionManager;
 
 /**
  * @author tuxburner
@@ -32,12 +27,18 @@ public class EmbbededNeo4jConfig extends Neo4jConfiguration {
 
 
     @Bean
-    public GraphDatabaseAPI graphDatabaseService() {
+    public GraphDatabaseService graphDatabaseService() {
         String embeddedDB = ConfigFactory.load().getString(embeddedDBPath);
         if(StringUtils.isEmpty(embeddedDB) == true) {
             throw new RuntimeException("Could not find config for embedded DB: "+embeddedDBPath);
         }
+        GraphDatabaseFactory graphDatabaseFactory = new GraphDatabaseFactory();
 
-        return new EmbeddedGraphDatabase(embeddedDB);
+        return graphDatabaseFactory.newEmbeddedDatabase(embeddedDBPath);
+    }
+
+    @Bean
+    public AuditingEventListener auditingEventListener() throws Exception {
+        return new AuditingEventListener(new IsNewAwareAuditingHandler<Object>(isNewStrategyFactory()));
     }
 }
