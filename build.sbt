@@ -1,6 +1,6 @@
 name := "play-neo4jplugin"
 
-version := "1.0.6-SNAPSHOT"
+version := "1.0.6.1-SNAPSHOT"
 
 organization := "com.github.tuxBurner"
 
@@ -25,7 +25,7 @@ libraryDependencies ++= Seq(
       ),
     // neo4j
     "org.neo4j" % "neo4j" % "1.9.2",
-    "org.neo4j" % "neo4j-rest-graphdb" % "1.9.M04"
+    "org.neo4j" % "neo4j-rest-graphdb" % "1.9.RC2"
 )
 
 publishTo <<= version {

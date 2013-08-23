@@ -61,9 +61,24 @@ public class Neo4JPlugin extends Plugin {
 
 
         final String mode = ConfigFactory.load().getString("neo4j.mode");
+
+        //Class<? extends Neo4jConfiguration> neo4jSpringConfigClass = null;
         if(mode.equals("embedded")) {
-          springContext = new AnnotationConfigApplicationContext(EmbbededNeo4jConfig.class);
+          //neo4jSpringConfigClass = EmbbededNeo4jConfig.class;
+            springContext = new AnnotationConfigApplicationContext(EmbbededNeo4jConfig.class);
         }
+        if(mode.equals("remote")) {
+            //neo4jSpringConfigClass = RestNeo4jConfig.class;
+            springContext = new AnnotationConfigApplicationContext(RestNeo4jConfig.class);
+        }
+
+        /*if(neo4jSpringConfigClass == null) {
+            throw new RuntimeException("neo4j.mode must be embedded or remote in the configuration.");
+        } */
+
+        //springContext = new AnnotationConfigApplicationContext(neo4jSpringConfigClass);
+
+
 
         if(springContext == null) {
             Logger.error("Could not load config must be: embedded or embeddedWithWebServer");
