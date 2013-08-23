@@ -11,10 +11,7 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
 
 @NodeEntity
-public class World {
-
-	@GraphId
-	public Long id;
+public class World extends AbstractNode {
 
 	@Indexed
 	public String name;
