@@ -27,7 +27,7 @@ libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.0.7"
 Activate the plugin in the `conf/play.plugins` like this:
 
 ```
-900:plugins.neo4j.Neo4JPlugin
+900:neo4jplugin.Neo4JPlugin
 ```
 
 Settings for the plugin go into the `conf/application.conf`:
