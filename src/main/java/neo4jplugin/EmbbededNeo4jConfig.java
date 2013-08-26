@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author tuxburner
- * Neo4j Plugin with spring data
+ *         Neo4j Plugin with spring data
  */
 @EnableTransactionManagement
 @Configuration
@@ -20,18 +20,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan("neo4j")
 public class EmbbededNeo4jConfig extends Neo4JBaseConfiguration {
 
-    private static  String embeddedDBPath = "neo4j.embeddedDB";
+    private static String embeddedDBPath = "neo4j.embeddedDB";
 
 
     @Bean
     public GraphDatabaseService graphDatabaseService() {
         String embeddedDB = ConfigFactory.load().getString(embeddedDBPath);
-        if(StringUtils.isEmpty(embeddedDB) == true) {
-            throw new RuntimeException("Could not find config for embedded DB: "+embeddedDBPath);
+        if (StringUtils.isEmpty(embeddedDB) == true) {
+            throw new RuntimeException("Could not find config for embedded DB: " + embeddedDBPath);
         }
         GraphDatabaseFactory graphDatabaseFactory = new GraphDatabaseFactory();
 
         return graphDatabaseFactory.newEmbeddedDatabase(embeddedDB);
     }
-
 }

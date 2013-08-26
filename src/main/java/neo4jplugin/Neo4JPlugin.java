@@ -24,7 +24,7 @@ public class Neo4JPlugin extends Plugin {
 
     private static AnnotationConfigApplicationContext springContext = null;
 
-    private final static String serviceProviderNameCfg = "neo4j.serviceProviderClass";
+    private final static String SERVICE_PROVIDER_NAME_CFG = "neo4j.serviceProviderClass";
 
 
     private static Class<?> serviceProviderClass = null;
@@ -35,10 +35,10 @@ public class Neo4JPlugin extends Plugin {
 
     public void onStart() {
 
-        String serviceProviderClassName = ConfigFactory.load().getString(serviceProviderNameCfg);
+        String serviceProviderClassName = ConfigFactory.load().getString(SERVICE_PROVIDER_NAME_CFG);
         if(StringUtils.isEmpty(serviceProviderClassName) == true) {
             if(Logger.isErrorEnabled()) {
-                Logger.error("No configuration for the neo4h ServiceProvider found: "+serviceProviderNameCfg+" must be set for this plugin.");
+                Logger.error("No configuration for the neo4h ServiceProvider found: "+ SERVICE_PROVIDER_NAME_CFG +" must be set for this plugin.");
             }
             return;
         }
@@ -54,7 +54,7 @@ public class Neo4JPlugin extends Plugin {
             }
         } catch (ClassNotFoundException e) {
             if(Logger.isErrorEnabled()) {
-                Logger.error("Error while getting Neo4J class from configuration: "+serviceProviderNameCfg+" = "+serviceProviderClassName,e);
+                Logger.error("Error while getting Neo4J class from configuration: "+ SERVICE_PROVIDER_NAME_CFG +" = "+serviceProviderClassName,e);
             }
             return;
         }
@@ -62,28 +62,20 @@ public class Neo4JPlugin extends Plugin {
 
         final String mode = ConfigFactory.load().getString("neo4j.mode");
 
-        //Class<? extends Neo4jConfiguration> neo4jSpringConfigClass = null;
         if(mode.equals("embedded")) {
-          //neo4jSpringConfigClass = EmbbededNeo4jConfig.class;
             springContext = new AnnotationConfigApplicationContext(EmbbededNeo4jConfig.class);
         }
         if(mode.equals("remote")) {
-            //neo4jSpringConfigClass = RestNeo4jConfig.class;
             springContext = new AnnotationConfigApplicationContext(RestNeo4jConfig.class);
         }
-
-        /*if(neo4jSpringConfigClass == null) {
-            throw new RuntimeException("neo4j.mode must be embedded or remote in the configuration.");
-        } */
-
-        //springContext = new AnnotationConfigApplicationContext(neo4jSpringConfigClass);
-
 
 
         if(springContext == null) {
             Logger.error("Could not load config must be: embedded or embeddedWithWebServer");
         }
+
         springContext.start();
+        springContext.scan();
         springContext.getAutowireCapableBeanFactory().autowireBean(serviceProviderClass);
         springContext.registerShutdownHook();
     }
