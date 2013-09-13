@@ -75,7 +75,7 @@ public class Neo4JPlugin extends Plugin {
         }
 
         springContext.start();
-        springContext.scan();
+        //springContext.scan();
         springContext.getAutowireCapableBeanFactory().autowireBean(serviceProviderClass);
         springContext.registerShutdownHook();
     }
