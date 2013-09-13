@@ -15,18 +15,16 @@ trait Neo4JTransactionController extends Controller {
   def runInTransaction[A](bp: BodyParser[A])(f: Request[A] => Result) =
   Action(bp) {
       request =>
-        val blubber:ServiceProvider = Neo4JPlugin.get();
+        val serviceProvider:ServiceProvider = Neo4JPlugin.get();
         try {
-          blubber.template.getGraphDatabase.getTransactionManager.begin;
-      val blabber = f(request)
-          blubber.template.getGraphDatabase.getTransactionManager.commit;
-
-        blabber
-          //f(request)
+          serviceProvider.template.getGraphDatabase.getTransactionManager.begin;
+          val result = f(request);
+          serviceProvider.template.getGraphDatabase.getTransactionManager.commit;
+          result
         }
         catch {
           case t: Throwable => {
-            blubber.template.getGraphDatabase.getTransactionManager.rollback
+            serviceProvider.template.getGraphDatabase.getTransactionManager.rollback
             throw t
           }
         }
