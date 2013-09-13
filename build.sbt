@@ -30,7 +30,7 @@ libraryDependencies ++= Seq(
 
 publishTo <<= version {
   case v if v.trim.endsWith("SNAPSHOT") => Some(Resolver.file("file",  new File(Path.userHome.absolutePath+"/.m2/repository")))
-  case _ => Some(Resolver.file("Github Pages", Path.userHome / "workspace_play" / "tuxBurner.github.io" / "repo" asFile))
+  case _ => Some(Resolver.file("Github Pages",  new File("../tuxBurner.github.io/repo")))
 }
 
-javacOptions ++= Seq("-source", "1.6")
+//javacOptions ++= Seq("-source", "1.6")
