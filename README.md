@@ -31,7 +31,7 @@ resolvers += "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/"
 Add a dependency on the following artifact:
 
 ```scala
-libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.0.7"
+libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.1.1"
 ```
 
 Activate the plugin in the `conf/play.plugins` like this:
