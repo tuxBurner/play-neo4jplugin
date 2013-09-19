@@ -1,6 +1,6 @@
 name := "play-neo4jplugin"
 
-version := "1.1.0-SNAPSHOT"
+version := "1.1.1"
 
 organization := "com.github.tuxBurner"
 
@@ -19,12 +19,12 @@ libraryDependencies ++= Seq(
     "javax.inject" % "javax.inject" % "1",
     "asm" % "asm" % "3.3.1",
     "org.springframework" % "spring-context" % "3.2.2.RELEASE",
-    "org.springframework.data" % "spring-data-neo4j" % "2.2.2.RELEASE",
-    "org.springframework.data" % "spring-data-neo4j-rest" % "2.2.2.RELEASE" excludeAll(
+    "org.springframework.data" % "spring-data-neo4j" % "2.3.1.RELEASE",
+    "org.springframework.data" % "spring-data-neo4j-rest" % "2.3.1.RELEASE" excludeAll(
       ExclusionRule(organization = "org.neo4j", name="neo4j")
       ),
     // neo4j
-    "org.neo4j" % "neo4j" % "1.9.2",
+    "org.neo4j" % "neo4j" % "1.9.3",
     "org.neo4j" % "neo4j-rest-graphdb" % "1.9.RC2"
 )
 
@@ -32,5 +32,3 @@ publishTo <<= version {
   case v if v.trim.endsWith("SNAPSHOT") => Some(Resolver.file("file",  new File(Path.userHome.absolutePath+"/.m2/repository")))
   case _ => Some(Resolver.file("Github Pages",  new File("../tuxBurner.github.io/repo")))
 }
-
-//javacOptions ++= Seq("-source", "1.6")

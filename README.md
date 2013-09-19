@@ -8,6 +8,16 @@ What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 
 So here we go, i created this plugin :)
 
+## Versions
+1.1.1: Lifted to neo4j-1.9.3 and spring-data-neo4j 2.3.1-RELEASE
+
+1.1.0: Added controller for transactional scala
+
+1.0.7: RestConfiguration and added AuditingEventListener
+
+1.0.2: New Spring-Data-2.2.2 Version Dep. 
+
+
 
 ## Installation (using sbt)
 
@@ -91,12 +101,6 @@ Example:
 
 Take a look into the examples
 
-## Versions
-1.0.2: New Spring-Data-2.2.2 Version Dep. 
-
-1.0.7: RestConfiguration and added AuditingEventListener
-
-1.1.0: Added controller for transactional scala
 
 ## TODO
 
