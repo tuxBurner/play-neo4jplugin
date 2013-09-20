@@ -1,7 +1,6 @@
 package neo4jplugin
 
 import play.api.mvc._
-import neo4jplugin.{ServiceProvider, Neo4JPlugin}
 
 /**
  * Created with IntelliJ IDEA.

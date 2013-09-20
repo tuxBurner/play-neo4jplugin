@@ -1,9 +1,12 @@
 package neo4jplugin;
 
 
+import play.libs.F;
 import play.mvc.Action;
 import play.mvc.Http.Context;
-import play.mvc.Result;
+import play.mvc.SimpleResult;
+import static play.libs.F.Promise;
+
 
 /**
  * Wraps an action in a Neo4J transaction.
@@ -11,9 +14,9 @@ import play.mvc.Result;
  */
 public class TransactionalAction extends Action<Transactional> {
 
-    public Result call(final Context ctx) throws Throwable {
-        return Neo4JPlugin.withTransaction(new play.libs.F.Function0<Result>() {
-            public Result apply() throws Throwable {
+    public Promise<SimpleResult> call(final Context ctx) throws Throwable {
+        return Neo4JPlugin.withTransaction(new F.Function0<Promise<SimpleResult>>() {
+            public F.Promise<SimpleResult> apply() throws Throwable {
                 return delegate.call(ctx);
             }
         });
