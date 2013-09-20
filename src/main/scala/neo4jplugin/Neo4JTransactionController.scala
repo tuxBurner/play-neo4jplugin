@@ -1,4 +1,4 @@
-package neo4jplugin 
+package neo4jplugin
 
 import play.api.mvc._
 import neo4jplugin.{ServiceProvider, Neo4JPlugin}
@@ -13,20 +13,22 @@ import neo4jplugin.{ServiceProvider, Neo4JPlugin}
 trait Neo4JTransactionController extends Controller {
 
   def runInTransaction[A](bp: BodyParser[A])(f: Request[A] => Result) =
-  Action(bp) {
+    Action(bp) {
       request =>
-        val serviceProvider:ServiceProvider = Neo4JPlugin.get();
+        val serviceProvider: ServiceProvider = Neo4JPlugin.get();
+        val tx = serviceProvider.template.getGraphDatabase.beginTx;
         try {
-          serviceProvider.template.getGraphDatabase.getTransactionManager.begin;
           val result = f(request);
-          serviceProvider.template.getGraphDatabase.getTransactionManager.commit;
+          tx.success()
           result
         }
         catch {
           case t: Throwable => {
-            serviceProvider.template.getGraphDatabase.getTransactionManager.rollback
+            tx.failure();
             throw t
           }
+        } finally {
+          tx.finish();
         }
     }
 
