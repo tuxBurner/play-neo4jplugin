@@ -9,6 +9,8 @@ What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 So here we go, i created this plugin :)
 
 ## Versions
+1.2    Lifted to play 2.2.1 and spring-data-neo4j 2.3.2.RELEASE 
+
 1.1.1: Lifted to neo4j-1.9.3 and spring-data-neo4j 2.3.1-RELEASE
 
 1.1.0: Added controller for transactional scala
