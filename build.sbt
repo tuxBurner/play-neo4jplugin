@@ -1,6 +1,6 @@
 name := "play-neo4jplugin"
 
-version := "1.2.1-SNAPSHOT"
+version := "1.2.2-SNAPSHOT"
 
 organization := "com.github.tuxBurner"
 
@@ -24,7 +24,7 @@ libraryDependencies ++= Seq(
       ExclusionRule(organization = "org.neo4j", name="neo4j")
       ),
     // neo4j
-    "org.neo4j" % "neo4j" % "1.9.4",
+    "org.neo4j" % "neo4j" % "1.9.5",
     "org.neo4j" % "neo4j-rest-graphdb" % "1.9.RC2"
 )
 
