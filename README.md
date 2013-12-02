@@ -34,7 +34,7 @@ resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo",
 resolvers += "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/"
 ```
 
-** !!! For Version 1.3.0 you need also to add !!! **
+**!!! For Version 1.3.0 you need also to add !!!**
 ```scala
 resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
 ```
