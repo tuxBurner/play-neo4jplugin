@@ -2,11 +2,11 @@ package neo4jplugin;
 
 import com.typesafe.config.ConfigFactory;
 import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.neo4j.config.EnableNeo4jRepositories;
+import org.springframework.data.neo4j.rest.SpringRestGraphDatabase;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -29,9 +29,8 @@ public class RestNeo4jConfig extends  Neo4JBaseConfiguration {
         String restDbUser = ConfigFactory.load().getString(REST_DB_USER_CFG_KEY);
         String restDbPassword = ConfigFactory.load().getString(REST_DB_PASSWORD_CFG_KEY);
 
-        /*new GraphDatabaseFactory().
-        SpringRestGraphDatabase springRestGraphDatabase = new SpringRestGraphDatabase(restDbHost,restDbUser,restDbPassword);*/
+        SpringRestGraphDatabase springRestGraphDatabase = new SpringRestGraphDatabase(restDbHost,restDbUser,restDbPassword);
 
-        return null;
+        return springRestGraphDatabase;
     }
 }

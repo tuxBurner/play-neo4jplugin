@@ -21,11 +21,13 @@ libraryDependencies ++= Seq(
     "asm" % "asm" % "3.3.1",
     "org.springframework" % "spring-context" % "3.2.5.RELEASE",
     "org.springframework.data" % "spring-data-neo4j" % "3.0.0.M1",
+    "org.springframework.data" % "spring-data-neo4j-rest" % "3.0.0.M1",
+    "com.sun.jersey" % "jersey-core" % "1.9",
     //"org.springframework.data" % "spring-data-neo4j-rest" % "2.3.2.RELEASE" excludeAll(
     //  ExclusionRule(organization = "org.neo4j", name="neo4j")
     //  ),
     // neo4j
-    "org.neo4j" % "neo4j" % "2.0.0-RC1"
+    "org.neo4j" % "neo4j" % "2.0.0-M06"
     //"org.neo4j" % "neo4j-rest-graphdb" % "1.9.RC2"
 )
 

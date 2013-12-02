@@ -9,13 +9,14 @@ object ApplicationBuild extends Build {
 
   val appDependencies = Seq(
     javaCore,
-    "com.github.tuxBurner" %% "play-neo4jplugin" % "1.2.0"
+    "com.github.tuxBurner" %% "play-neo4jplugin" % "1.2.2-SNAPSHOT"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
     resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo",
     resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository",
-    resolvers += "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/"
+    resolvers += "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/",
+    resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
   )
 
 }
