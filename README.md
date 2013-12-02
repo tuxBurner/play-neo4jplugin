@@ -1,6 +1,6 @@
 # Play Neo4JPlugin
 
-This is a simple Play 2.1.2 plugin, for NEO4J.
+This is a simple Play 2.2.1 plugin, for NEO4J.
 
 I got the ideas how to do it from https://github.com/tomasmuller/playframework-neo4j-template THANKS A LOT @tomasmuller for giving me the ground ideas :)
 
