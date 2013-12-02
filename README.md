@@ -9,6 +9,8 @@ What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 So here we go, i created this plugin :)
 
 ## Versions
+1.3.0  Lifted to neo4j-2.0.0-M06, spring-data-neo4j-3.0.0.M1 and spring-context-3.2.5.RELEASE **ATTENTION SEE  resolver for version 1.3.0 cause of the milestone you need an extra repo** 
+
 1.2.1  Lifted to neo4j 1.9.5
 
 1.2    Lifted to play 2.2.1 and spring-data-neo4j 2.3.2.RELEASE 
@@ -30,6 +32,11 @@ You will need to add the following resolver in your `project/Build.scala` file:
 ```scala
 resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo",
 resolvers += "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/"
+```
+
+** !!! For Version 1.3.0 you need also to add !!! **
+```scala
+resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
 ```
 
 Add a dependency on the following artifact:

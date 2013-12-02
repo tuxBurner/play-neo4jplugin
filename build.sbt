@@ -1,6 +1,6 @@
 name := "play-neo4jplugin"
 
-version := "1.2.2-SNAPSHOT"
+version := "1.3.0"
 
 organization := "com.github.tuxBurner"
 
@@ -16,19 +16,16 @@ scalaVersion := "2.10.2"
 libraryDependencies ++= Seq(
    "com.typesafe.play" %% "play" % "2.2.1",
    "com.typesafe.play" %% "play-java" % "2.2.1",
-    // spring data neo4j
+    // spring data neo4j dependencies
     "javax.inject" % "javax.inject" % "1",
     "asm" % "asm" % "3.3.1",
+    "com.sun.jersey" % "jersey-core" % "1.9",
+    // spring data stuff
     "org.springframework" % "spring-context" % "3.2.5.RELEASE",
     "org.springframework.data" % "spring-data-neo4j" % "3.0.0.M1",
     "org.springframework.data" % "spring-data-neo4j-rest" % "3.0.0.M1",
-    "com.sun.jersey" % "jersey-core" % "1.9",
-    //"org.springframework.data" % "spring-data-neo4j-rest" % "2.3.2.RELEASE" excludeAll(
-    //  ExclusionRule(organization = "org.neo4j", name="neo4j")
-    //  ),
-    // neo4j
+    // neo4j stuff
     "org.neo4j" % "neo4j" % "2.0.0-M06"
-    //"org.neo4j" % "neo4j-rest-graphdb" % "1.9.RC2"
 )
 
 publishTo <<= version {
