@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.neo4j.config.EnableNeo4jRepositories;
+import org.springframework.data.repository.core.support.PlayGraphRepositoryFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @EnableTransactionManagement
 @Configuration
-@EnableNeo4jRepositories(basePackages = "neo4j.repositories")
+@EnableNeo4jRepositories(basePackages = "neo4j.repositories",repositoryFactoryBeanClass = PlayGraphRepositoryFactoryBean.class)
 @ComponentScan("neo4j")
 public class EmbbededNeo4jConfig extends Neo4JBaseConfiguration {
 
