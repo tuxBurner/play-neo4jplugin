@@ -8,7 +8,8 @@ resolvers ++= Seq(
   "Typesafe Releases" at "http://repo.typesafe.com/typesafe/releases/",
   "Spring releases" at "http://repo.springsource.org/release",
   "Sprin milestones" at "http://repo.spring.io/milestone",
-  "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/"
+  "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/",
+  "Local Maven" at "file://" + Path.userHome.absolutePath + "/.m2/repository"
 )
 
 scalaVersion := "2.10.2"
@@ -22,10 +23,10 @@ libraryDependencies ++= Seq(
     "com.sun.jersey" % "jersey-core" % "1.9",
     // spring data stuff
     "org.springframework" % "spring-context" % "3.2.5.RELEASE",
-    "org.springframework.data" % "spring-data-neo4j" % "3.0.0.M1",
-    "org.springframework.data" % "spring-data-neo4j-rest" % "3.0.0.M1",
+    "org.springframework.data" % "spring-data-neo4j" % "3.0.0.BUILD-SNAPSHOT",
+    "org.springframework.data" % "spring-data-neo4j-rest" % "3.0.0.BUILD-SNAPSHOT",
     // neo4j stuff
-    "org.neo4j" % "neo4j" % "2.0.0-M06"
+    "org.neo4j" % "neo4j" % "2.0.0"
 )
 
 publishTo <<= version {
