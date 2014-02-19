@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.neo4j.config.EnableNeo4jRepositories;
+import org.springframework.data.neo4j.repository.GraphRepositoryFactoryBean;
 import org.springframework.data.neo4j.rest.SpringRestGraphDatabase;
-import org.springframework.data.repository.core.support.PlayGraphRepositoryFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -16,9 +16,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @EnableTransactionManagement
 @Configuration
-@EnableNeo4jRepositories(basePackages = "neo4j.repositories",repositoryFactoryBeanClass = PlayGraphRepositoryFactoryBean.class)
+@EnableNeo4jRepositories(basePackages = "neo4j.repositories",repositoryFactoryBeanClass = GraphRepositoryFactoryBean.class)
 @ComponentScan("neo4j")
-public class RestNeo4jConfig extends  Neo4JBaseConfiguration {
+public class RestNeo4jConfig extends Neo4JBaseConfiguration
+{
 
     private static  String  REST_DB_HOST_CFG_KEY = "neo4j.restDB.host";
     private static  String  REST_DB_USER_CFG_KEY = "neo4j.restDB.user";

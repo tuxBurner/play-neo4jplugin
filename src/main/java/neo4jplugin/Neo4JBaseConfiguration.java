@@ -10,7 +10,7 @@ public class Neo4JBaseConfiguration extends Neo4jConfiguration {
 
     @Bean
     public AuditingEventListener auditingEventListener() throws Exception {
-        return new AuditingEventListener(new IsNewAwareAuditingHandler<Object>(isNewStrategyFactory()));
+        return new AuditingEventListener(new IsNewAwareAuditingHandler1(isNewStrategyFactory()));
     }
 
 }
