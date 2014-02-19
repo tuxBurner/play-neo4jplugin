@@ -9,6 +9,8 @@ What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 So here we go, i created this plugin :)
 
 ## Versions
+1.3.2 Lifted to new Versions: neo4j: 2.0.1 spring: 4.0.1 spring-data-neo4j: 3.0.0.RC1
+
 1.3.1  Version which fixes https://github.com/tuxBurner/play-neo4jplugin/issues/7 **ATTENTION DONT  USE VERSION 1.3.0 IT IS BROKEN DUE THIS ISSUE**
 
 1.3.0  Lifted to neo4j-2.0.0-M06, spring-data-neo4j-3.0.0.M1 and spring-context-3.2.5.RELEASE **ATTENTION SEE  resolver for version 1.3.0 cause of the milestone you need an extra repo** 
@@ -44,7 +46,7 @@ resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
 Add a dependency on the following artifact:
 
 ```scala
-libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.3.0"
+libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.3.2"
 ```
 
 Activate the plugin in the `conf/play.plugins` like this:
