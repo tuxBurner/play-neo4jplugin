@@ -22,11 +22,11 @@ libraryDependencies ++= Seq(
     "asm" % "asm" % "3.3.1",
     "com.sun.jersey" % "jersey-core" % "1.9",
     // spring data stuff
-    "org.springframework" % "spring-context" % "3.2.5.RELEASE",
-    "org.springframework.data" % "spring-data-neo4j" % "3.0.0.BUILD-SNAPSHOT",
-    "org.springframework.data" % "spring-data-neo4j-rest" % "3.0.0.BUILD-SNAPSHOT",
+    "org.springframework" % "spring-context" % "4.0.1.RELEASE",
+    "org.springframework.data" % "spring-data-neo4j" % "3.0.0.RC1",
+    "org.springframework.data" % "spring-data-neo4j-rest" % "3.0.0.RC1",
     // neo4j stuff
-    "org.neo4j" % "neo4j" % "2.0.0"
+    "org.neo4j" % "neo4j" % "2.0.1"
 )
 
 publishTo <<= version {
