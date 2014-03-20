@@ -9,6 +9,8 @@ What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 So here we go, i created this plugin :)
 
 ## Versions
+1.3.3 Lifted to new Versions: spring-data-neo4j: 3.0.1.RELEASE, play 2.2.2 **Cause of https://github.com/spring-projects/spring-data-neo4j/issues/161 there is a new config option: neo4j.basepackage="neo4j" # the base package where the entities are located : when not set the plugin defaults to neo4j**
+
 1.3.2 Lifted to new Versions: neo4j: 2.0.1 spring: 4.0.1 spring-data-neo4j: 3.0.0.RC1
 
 1.3.1  Version which fixes https://github.com/tuxBurner/play-neo4jplugin/issues/7 **ATTENTION DONT  USE VERSION 1.3.0 IT IS BROKEN DUE THIS ISSUE**
@@ -46,7 +48,7 @@ resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
 Add a dependency on the following artifact:
 
 ```scala
-libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.3.2"
+libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.3.3"
 ```
 
 Activate the plugin in the `conf/play.plugins` like this:
@@ -59,6 +61,8 @@ Settings for the plugin go into the `conf/application.conf`:
 
 ```
 neo4j.serviceProviderClass="neo4j.services.Neo4JServiceProvider" # the provider class which holds the annotated neo4j beans
+neo4j.basepackage="neo4j" # the base package where the entities are located
+
 neo4j.mode="embedded" # mode to run embedded or remote
 
 # embedded db config
