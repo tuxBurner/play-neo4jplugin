@@ -22,14 +22,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class EmbbededNeo4jConfig extends Neo4JBaseConfiguration
 {
 
-    private static String embeddedDBPath = "neo4j.embeddedDB";
+    /**
+     * Config key which defines where the embedded database path is.
+     */
+    private static String EMBEDDED_DB_CFG_KEY = "neo4j.embeddedDB";
 
 
     @Bean
     public GraphDatabaseService graphDatabaseService() {
-        String embeddedDB = ConfigFactory.load().getString(embeddedDBPath);
+        String embeddedDB = ConfigFactory.load().getString(EMBEDDED_DB_CFG_KEY);
         if (StringUtils.isEmpty(embeddedDB) == true) {
-            throw new RuntimeException("Could not find config for embedded DB: " + embeddedDBPath);
+            throw new RuntimeException("Could not find config for embedded DB: " + EMBEDDED_DB_CFG_KEY);
         }
         GraphDatabaseFactory graphDatabaseFactory = new GraphDatabaseFactory();
 
