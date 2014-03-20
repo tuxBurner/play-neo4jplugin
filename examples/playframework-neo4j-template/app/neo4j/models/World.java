@@ -16,7 +16,7 @@ public class World extends AbstractNode {
 	@Indexed
 	public String name;
 
-	@Indexed(indexName = "moon-index")
+	@Indexed
 	public int moons;
 
 	@Fetch
