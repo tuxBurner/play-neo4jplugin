@@ -1,6 +1,6 @@
 name := "play-neo4jplugin"
 
-version := "1.3.4-SNAPSHOT"
+version := "1.3.4"
 
 organization := "com.github.tuxBurner"
 
@@ -15,18 +15,18 @@ resolvers ++= Seq(
 scalaVersion := "2.10.2"
 
 libraryDependencies ++= Seq(
-   "com.typesafe.play" %% "play" % "2.2.2",
-   "com.typesafe.play" %% "play-java" % "2.2.2",
+   "com.typesafe.play" %% "play" % "2.2.3",
+   "com.typesafe.play" %% "play-java" % "2.2.3",
     // spring data neo4j dependencies
     "javax.inject" % "javax.inject" % "1",
     "asm" % "asm" % "3.3.1",
     "com.sun.jersey" % "jersey-core" % "1.9",
     // spring data stuff
     "org.springframework" % "spring-context" % "4.0.2.RELEASE",
-    "org.springframework.data" % "spring-data-neo4j" % "3.0.1.RELEASE",
-    "org.springframework.data" % "spring-data-neo4j-rest" % "3.0.1.RELEASE",
+    "org.springframework.data" % "spring-data-neo4j" % "3.0.2.RELEASE",
+    "org.springframework.data" % "spring-data-neo4j-rest" % "3.0.2.RELEASE",
     // neo4j stuff
-    "org.neo4j" % "neo4j" % "2.0.1"
+    "org.neo4j" % "neo4j" % "2.0.3"
 )
 
 publishTo <<= version {
