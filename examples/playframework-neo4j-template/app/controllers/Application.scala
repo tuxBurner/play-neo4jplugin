@@ -4,10 +4,12 @@ package controllers
 import play.api.mvc._
 import neo4j.services.{Neo4JServiceProvider, GalaxyService}
 import neo4j.models.World
+import controllers.Neo4jTransactionAction
 
 object Application extends Controller {
 
-	def index = Action {
+	def index = Neo4jTransactionAction {
+		Action {
 
     def galaxyService: GalaxyService = Neo4JServiceProvider.get().galaxyService;
 
@@ -22,5 +24,6 @@ object Application extends Controller {
 
 		Ok(views.html.index.render(allWorlds, pathFromFirstToLast))
 	}
+}
 
 }

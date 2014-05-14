@@ -1,34 +1,39 @@
-package neo4jplugin
+package controllers
 
 import play.api.mvc._
+import scala.concurrent.Future
+import neo4jplugin.{Neo4JPlugin, ServiceProvider}
 
 /**
- * Created with IntelliJ IDEA.
- * User: tuxburner
- * Date: 9/12/13
- * Time: 7:06 PM
- * To change this template use File | Settings | File Templates.
+ * Created by tuxburner on 5/14/14.
  */
-trait Neo4JTransactionController extends Controller {
+object Neo4jTransactionAction extends ActionBuilder[Request]  {
+  override def composeAction[A](action: Action[A]) = new Neo4jTransactionAction(action)
 
-  def runInTransaction[A](bp: BodyParser[A])(f: Request[A] => Result) =
-    Action(bp) {
-      request =>
-        val serviceProvider: ServiceProvider = Neo4JPlugin.get();
-        val tx = serviceProvider.template.getGraphDatabase.beginTx;
-        try {
-          val result = f(request);
-          tx.success()
-          result
-        }
-        catch {
-          case t: Throwable => {
-            tx.failure();
-            throw t
-          }
-        } finally {
-          tx.finish();
-        }
+  override protected def invokeBlock[A](request: Request[A], block: (Request[A]) => Future[SimpleResult]): Future[SimpleResult] = {
+    block(request)
+  }
+}
+
+case class Neo4jTransactionAction[A](action: Action[A]) extends Action[A] {
+
+  def apply(request: Request[A]): Future[SimpleResult] = {
+    val serviceProvider: ServiceProvider = Neo4JPlugin.get();
+    val tx = serviceProvider.template.getGraphDatabase.beginTx;
+    try {
+      val result = action(request)
+      tx.success()
+      result
     }
+    catch {
+      case t: Throwable => {
+        tx.failure();
+        throw t
+      }
+    } finally {
+      tx.close();
+    }
+  }
 
+  lazy val parser = action.parser
 }
