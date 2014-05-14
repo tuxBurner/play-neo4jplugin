@@ -52,7 +52,7 @@ resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
 Add a dependency on the following artifact:
 
 ```scala
-libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.3.4"
+libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.3.5"
 ```
 
 Activate the plugin in the `conf/play.plugins` like this:
