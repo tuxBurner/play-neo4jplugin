@@ -9,6 +9,8 @@ What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 So here we go, i created this plugin :)
 
 ## Versions
+1.3.5 Fixed Scala action transaction handling by implememnting an ActionBuilder. Example is in examples/playframework-neo4j-template/app/controllers/Application.scala.
+
 1.3.4 Lifted to new Versions: spring-data-neo4j: 3.0.2.RELEASE, play 2.2.3, neo4j 2.0.3
 
 1.3.3 Lifted to new Versions: spring-data-neo4j: 3.0.1.RELEASE, play 2.2.2 **Cause of https://github.com/spring-projects/spring-data-neo4j/issues/161 there is a new config option: neo4j.basepackage="neo4j" # the base package where the entities are located : when not set the plugin defaults to neo4j**
@@ -105,11 +107,13 @@ To access your repository you can call: `Neo4JServiceProvider.get().neoUserRepos
 
 To access the neo4jtemplate you can call: `Neo4JServiceProvider.get().template.<do magic neo4j stuff>`
 
+## Transactions
+
 There is also a `@Transactional` annotation which I addopted from the play jpa plugin.
 
 Just annotate your Result with it and it runs in a neo4j Transaction.
 
-Example: 
+Example Java: 
 ```java
   @Transactional
   public static Result doSomethingInTransaction(Long id) {
@@ -118,6 +122,19 @@ Example:
 
     return ok("Woohhoh Neo4jTransaction");
   }  
+```
+
+For Scala i used the Actionbuilder pattern described at: http://www.playframework.com/documentation/2.2.x/ScalaActionsComposition
+This allows you to combine several actions. 
+
+Example Scala:
+```scala
+  def index = Neo4jTransactionAction {
+    Neo4JServiceProvider.get().neoUserRepository.<do magic neo4j stuff>
+    Neo4JServiceProvider.get().neoUserRepository.<do magic neo4j stuff>
+
+    Ok("Woohhoh Neo4jTransaction")
+  }
 ```
 
 Take a look into the examples

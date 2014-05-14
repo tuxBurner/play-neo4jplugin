@@ -9,7 +9,7 @@ object ApplicationBuild extends Build {
 
   val appDependencies = Seq(
     javaCore,
-    "com.github.tuxBurner" %% "play-neo4jplugin" % "1.3.4"
+    "com.github.tuxBurner" %% "play-neo4jplugin" % "1.3.5"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
