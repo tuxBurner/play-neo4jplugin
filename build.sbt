@@ -1,6 +1,6 @@
 name := "play-neo4jplugin"
 
-version := "1.3.6-SNAPSHOT"
+version := "1.3.6"
 
 organization := "com.github.tuxBurner"
 
@@ -12,11 +12,11 @@ resolvers ++= Seq(
   "Local Maven" at "file://" + Path.userHome.absolutePath + "/.m2/repository"
 )
 
-scalaVersion := "2.10.2"
+scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
-   "com.typesafe.play" %% "play" % "2.2.3",
-   "com.typesafe.play" %% "play-java" % "2.2.3",
+   "com.typesafe.play" %% "play" % "2.3.1",
+   "com.typesafe.play" %% "play-java" % "2.3.1",
     // spring data neo4j dependencies
     "javax.inject" % "javax.inject" % "1",
     "asm" % "asm" % "3.3.1",

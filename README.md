@@ -9,6 +9,8 @@ What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 So here we go, i created this plugin :)
 
 ## Versions
+1.3.6 Version for play 2.3. **Cause of Bug: http://stackoverflow.com/questions/23997511/using-cypher-from-scala-in-embedded-databases-fails your app must compile with scala: 2.10.4**
+
 1.3.5 Fixed Scala action transaction handling by implememnting an ActionBuilder. Example is in examples/playframework-neo4j-template/app/controllers/Application.scala.
 
 1.3.4 Lifted to new Versions: spring-data-neo4j: 3.0.2.RELEASE, play 2.2.3, neo4j 2.0.3
@@ -19,11 +21,11 @@ So here we go, i created this plugin :)
 
 1.3.1  Version which fixes https://github.com/tuxBurner/play-neo4jplugin/issues/7 **ATTENTION DONT  USE VERSION 1.3.0 IT IS BROKEN DUE THIS ISSUE**
 
-1.3.0  Lifted to neo4j-2.0.0-M06, spring-data-neo4j-3.0.0.M1 and spring-context-3.2.5.RELEASE **ATTENTION SEE  resolver for version 1.3.0 cause of the milestone you need an extra repo** 
+1.3.0  Lifted to neo4j-2.0.0-M06, spring-data-neo4j-3.0.0.M1 and spring-context-3.2.5.RELEASE **ATTENTION SEE  resolver for version 1.3.0 cause of the milestone you need an extra repo**
 
 1.2.1  Lifted to neo4j 1.9.5
 
-1.2    Lifted to play 2.2.1 and spring-data-neo4j 2.3.2.RELEASE 
+1.2    Lifted to play 2.2.1 and spring-data-neo4j 2.3.2.RELEASE
 
 1.1.1: Lifted to neo4j-1.9.3 and spring-data-neo4j 2.3.1-RELEASE
 
@@ -31,7 +33,7 @@ So here we go, i created this plugin :)
 
 1.0.7: RestConfiguration and added AuditingEventListener
 
-1.0.2: New Spring-Data-2.2.2 Version Dep. 
+1.0.2: New Spring-Data-2.2.2 Version Dep.
 
 
 
@@ -41,7 +43,6 @@ You will need to add the following resolver in your `project/Build.scala` file:
 
 ```scala
 resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo",
-resolvers += "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/"
 ```
 
 **!!! For Version 1.3.0 you need also to add !!!**
@@ -52,7 +53,12 @@ resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
 Add a dependency on the following artifact:
 
 ```scala
-libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.3.5"
+libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.3.6"
+```
+
+**!!! For Version 1.3.6 you need to change the scala version !!!**
+```scala
+scalaVersion := "2.10.4"
 ```
 
 Activate the plugin in the `conf/play.plugins` like this:
@@ -88,7 +94,7 @@ All neo4j repositories go to `app/neo4j/repositories/`
 
 You need a class which must extend from `neo4jplugin.ServiceProvider` and must be configured in the `application.conf` under the key `neo4j.serviceProviderClass`:
 
-Example: 
+Example:
 ```java
     @Component
     public class Neo4JServiceProvider extends ServiceProvider {
@@ -113,7 +119,7 @@ There is also a `@Transactional` annotation which I addopted from the play jpa p
 
 Just annotate your Result with it and it runs in a neo4j Transaction.
 
-Example Java: 
+Example Java:
 ```java
   @Transactional
   public static Result doSomethingInTransaction(Long id) {
@@ -125,7 +131,7 @@ Example Java:
 ```
 
 For Scala i used the Actionbuilder pattern described at: http://www.playframework.com/documentation/2.2.x/ScalaActionsComposition
-This allows you to combine several actions. 
+This allows you to combine several actions.
 
 Example Scala:
 ```scala

@@ -10,14 +10,14 @@ import neo4jplugin.{Neo4JPlugin, ServiceProvider}
 object Neo4jTransactionAction extends ActionBuilder[Request]  {
   override def composeAction[A](action: Action[A]) = new Neo4jTransactionAction(action)
 
-  override protected def invokeBlock[A](request: Request[A], block: (Request[A]) => Future[SimpleResult]): Future[SimpleResult] = {
+  override def invokeBlock[A](request: Request[A], block: (Request[A]) => Future[Result]) = {
     block(request)
   }
 }
 
 case class Neo4jTransactionAction[A](action: Action[A]) extends Action[A] {
 
-  def apply(request: Request[A]): Future[SimpleResult] = {
+  def apply(request: Request[A]): Future[Result] = {
     val serviceProvider: ServiceProvider = Neo4JPlugin.get();
     val tx = serviceProvider.template.getGraphDatabase.beginTx;
     try {

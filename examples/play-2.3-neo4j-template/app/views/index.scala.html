@@ -32,10 +32,10 @@
 								}
 							</tbody>
 						</table>
-						<legend>And the path from @worlds(0).name to @worlds(worlds.size -1).name</legend>
+						<legend>And the path from @worlds.get(0).name to @worlds.get(worlds.size -1).name</legend>
 						<ul class="breadcrumb">
 							@for(pathWorld <- path) {
-								<li><a href="#">@pathWorld.name</a> <span class="divider">/</span></li>
+								<li><a href="#">@pathWorld.name</a> </li>
 							}
 						</ul>
 					</fieldset>
