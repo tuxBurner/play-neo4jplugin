@@ -32,9 +32,9 @@ public class Neo4JBaseConfiguration extends Neo4jConfiguration {
         setBasePackage(basePackages);
     }
 
-    @Bean
+  /*  @Bean
     public AuditingEventListener auditingEventListener() throws Exception {
         return new AuditingEventListener(new IsNewAwareAuditingHandler(isNewStrategyFactory()));
-    }
+    }*/
 
 }
