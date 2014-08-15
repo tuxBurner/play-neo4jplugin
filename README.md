@@ -9,6 +9,8 @@ What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 So here we go, i created this plugin :)
 
 ## Versions
+1.4   Version lifts: play 2.3.3, neo4j 2.1.3, spring-data-neo4j 3.1.2.RELEASE and spring-context 4.0.6.RELEASE
+
 1.3.6 Version for play 2.3. **Cause of Bug: http://stackoverflow.com/questions/23997511/using-cypher-from-scala-in-embedded-databases-fails your app must compile with scala: 2.10.4**
 
 1.3.5 Fixed Scala action transaction handling by implememnting an ActionBuilder. Example is in examples/playframework-neo4j-template/app/controllers/Application.scala.
@@ -53,10 +55,10 @@ resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
 Add a dependency on the following artifact:
 
 ```scala
-libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.3.6"
+libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.4.0"
 ```
 
-**!!! For Version 1.3.6 you need to change the scala version !!!**
+**!!! For Version 1.3.6/1.4.0 you need to change the scala version !!!**
 ```scala
 scalaVersion := "2.10.4"
 ```

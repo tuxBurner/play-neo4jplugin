@@ -14,6 +14,6 @@ resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/
 libraryDependencies ++= Seq(
   cache,
   ws,
-  "com.github.tuxBurner" %% "play-neo4jplugin" % "1.4.0-SNAPSHOT",
+  "com.github.tuxBurner" %% "play-neo4jplugin" % "1.4.0",
   "org.webjars" % "bootstrap" % "3.2.0"
 )
