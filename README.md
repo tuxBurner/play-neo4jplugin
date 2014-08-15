@@ -44,16 +44,14 @@ So here we go, i created this plugin :)
 You will need to add the following resolver in your `project/Build.scala` file:
 
 ```scala
-resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo",
+resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo"
+
+resolvers += "Neo4j Maven Repo" at "http://m2.neo4j.org/releases"
 ```
 
 **!!! For Version 1.3.0 you need also to add !!!**
 ```scala
 resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
-```
-**!!! For Version 1.4.0 you nedd also to add !!!**
-```scala
-resolvers += "Neo4j Maven Repo" at "http://m2.neo4j.org/releases"
 ```
 
 Add a dependency on the following artifact:
