@@ -51,6 +51,10 @@ resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo",
 ```scala
 resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
 ```
+**!!! For Version 1.4.0 you nedd also to add !!!**
+```scala
+resolvers += "Neo4j Maven Repo" at "http://m2.neo4j.org/releases"
+```
 
 Add a dependency on the following artifact:
 
