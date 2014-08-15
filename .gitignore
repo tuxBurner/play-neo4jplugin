@@ -4,3 +4,4 @@ target/
 .settings/
 *.iml
 user.sbt
+atlassian-ide-plugin.xml
