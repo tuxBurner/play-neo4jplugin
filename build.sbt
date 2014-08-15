@@ -1,6 +1,6 @@
 name := "play-neo4jplugin"
 
-version := "1.4.1-SNAPSHOT"
+version := "1.4.0"
 
 organization := "com.github.tuxBurner"
 
