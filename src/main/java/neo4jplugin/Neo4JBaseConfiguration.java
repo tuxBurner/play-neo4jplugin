@@ -3,6 +3,9 @@ package neo4jplugin;
 
 import com.typesafe.config.ConfigException;
 import com.typesafe.config.ConfigFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanCreationException;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.auditing.IsNewAwareAuditingHandler;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
@@ -32,9 +35,20 @@ public class Neo4JBaseConfiguration extends Neo4jConfiguration {
         setBasePackage(basePackages);
     }
 
-  /*  @Bean
+    @Bean
     public AuditingEventListener auditingEventListener() throws Exception {
-        return new AuditingEventListener(new IsNewAwareAuditingHandler(isNewStrategyFactory()));
-    }*/
+
+      return new AuditingEventListener(new ObjectFactory<IsNewAwareAuditingHandler>() {
+          @Override
+          public IsNewAwareAuditingHandler getObject() throws BeansException
+          {
+            try {
+              return new IsNewAwareAuditingHandler(neo4jMappingContext());
+            } catch (Exception e) {
+              throw new BeanCreationException("Error while creating "+IsNewAwareAuditingHandler.class.getName(),e);
+            }
+          }
+        });
+    }
 
 }

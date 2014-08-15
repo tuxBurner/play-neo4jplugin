@@ -17,10 +17,10 @@ public class AbstractNode {
 	public Long id;
 
     @CreatedDate
-    private Long createdDate;
+    public Long createdDate;
 
     @LastModifiedDate
-    private Long lastModifiedDate;
+    public Long lastModifiedDate;
 
 
 }
