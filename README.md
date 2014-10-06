@@ -9,6 +9,8 @@ What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 So here we go, i created this plugin :)
 
 ## Versions
+1.4.1   Version lifts: play 2.3.4, neo4j 2.1.4, spring-data-neo4j 3.2.0.RELEASE and spring-context 4.1.1.RELEASE
+
 1.4   Version lifts: play 2.3.3, neo4j 2.1.3, spring-data-neo4j 3.1.2.RELEASE and spring-context 4.0.6.RELEASE
 
 1.3.6 Version for play 2.3. **Cause of Bug: http://stackoverflow.com/questions/23997511/using-cypher-from-scala-in-embedded-databases-fails your app must compile with scala: 2.10.4**

@@ -1,6 +1,6 @@
 name := "play-neo4jplugin"
 
-version := "1.4.1-SNAPSHOT"
+version := "1.4.1"
 
 organization := "com.github.tuxBurner"
 
@@ -13,6 +13,9 @@ resolvers ++= Seq(
 )
 
 scalaVersion := "2.10.4"
+
+//disable doc gen this is broken @ mom
+publishArtifact in (Compile, packageDoc) := false
 
 libraryDependencies ++= Seq(
    "com.typesafe.play" %% "play" % "2.3.4",
