@@ -9,6 +9,8 @@ What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 So here we go, i created this plugin :)
 
 ## Versions
+1.4.2 Version lifts: play 2.3.6, neo4j 2.1.5, spring-data-eo4j 3.2.1.RELEASE
+
 1.4.1   Version lifts: play 2.3.4, neo4j 2.1.4, spring-data-neo4j 3.2.0.RELEASE and spring-context 4.1.1.RELEASE
 
 1.4   Version lifts: play 2.3.3, neo4j 2.1.3, spring-data-neo4j 3.1.2.RELEASE and spring-context 4.0.6.RELEASE
@@ -59,7 +61,7 @@ resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
 Add a dependency on the following artifact:
 
 ```scala
-libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.4.1"
+libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.4.2"
 ```
 
 **!!! For Version 1.3.6/1.4.0/1.4.1 you need to change the scala version !!!**
