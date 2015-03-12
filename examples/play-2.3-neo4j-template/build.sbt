@@ -16,6 +16,6 @@ resolvers += "Neo4j Maven Repo" at "http://m2.neo4j.org/releases"
 libraryDependencies ++= Seq(
   cache,
   ws,
-  "com.github.tuxBurner" %% "play-neo4jplugin" % "1.4.5-SNAPSHOT",
+  "com.github.tuxBurner" %% "play-neo4jplugin" % "1.4.4",
   "org.webjars" % "bootstrap" % "3.2.0"
 )

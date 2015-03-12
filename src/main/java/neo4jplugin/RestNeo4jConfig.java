@@ -35,7 +35,7 @@ public class RestNeo4jConfig extends Neo4JBaseConfiguration
         Boolean restCypherCachingDb = ConfigFactory.load().getBoolean(REST_DB_CACHING_CFG_KEY);
 
         GraphDatabaseService springRestGraphDatabase = null;
-        if(restCypherCachingDb == true) {
+        if(restCypherCachingDb == false) {
           springRestGraphDatabase = new SpringRestGraphDatabase(restDbHost,restDbUser,restDbPassword);
         } else {
           springRestGraphDatabase = new SpringCypherRestGraphDatabase(restDbHost,restDbUser,restDbPassword);
