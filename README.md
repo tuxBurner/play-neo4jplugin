@@ -9,6 +9,8 @@ What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 So here we go, i created this plugin :)
 
 ## Versions
+1.4.4 Remote configuration **neo4j.restDB.caching=true** added. When set the SpringCypherRestGraphDatabase class is used instead of SpringRestGraphDatabase. Thx at @unterstein !
+
 1.4.3 Version lifts: play 2.3.8, neo4j 2.1.7, spring-data-neo4j 3.3.0.RC1
 
 1.4.2 Version lifts: play 2.3.6, neo4j 2.1.5, spring-data-neo4j 3.2.1.RELEASE
@@ -63,10 +65,10 @@ resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
 Add a dependency on the following artifact:
 
 ```scala
-libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.4.3"
+libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.4.4"
 ```
 
-**!!! For Version 1.3.6/1.4.0/1.4.1/1.4.3 you need to change the scala version !!!**
+**!!! For Version 1.3.6/1.4.0/1.4.1/1.4.3/1.4.4 you need to change the scala version !!!**
 ```scala
 scalaVersion := "2.10.4"
 ```
@@ -92,6 +94,7 @@ neo4j.embeddedDB="target/neo4j-db" # where to put the embedded database
 neo4j.restDB.host="http://localhost:7474/db/data"
 neo4j.restDB.user=""
 neo4j.restDB.password=""
+neo4j.restDB.caching=true
 
 ```
 
