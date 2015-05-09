@@ -54,7 +54,7 @@ You will need to add the following resolver in your `project/Build.scala` file:
 ```scala
 resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo"
 
-resolvers += "Neo4j Maven Repo" at "http://m2.neo4j.org/releases"
+resolvers += "Neo4j Maven Repo" at "http://m2.neo4j.org/content/repositories/releases"
 ```
 
 **!!! For Version 1.3.0 you need also to add !!!**
