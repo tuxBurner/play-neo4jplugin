@@ -10,7 +10,7 @@ resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo"
 
 resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
 
-resolvers += "Neo4j Maven Repo" at "http://m2.neo4j.org/releases"
+resolvers += "Neo4j Maven Repo" at "http://m2.neo4j.org/content/repositories/releases"
 
 
 libraryDependencies ++= Seq(
