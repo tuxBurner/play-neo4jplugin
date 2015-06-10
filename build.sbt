@@ -18,8 +18,8 @@ scalaVersion := "2.10.4"
 publishArtifact in (Compile, packageDoc) := false
 
 libraryDependencies ++= Seq(
-   "com.typesafe.play" %% "play" % "2.3.8",
-   "com.typesafe.play" %% "play-java" % "2.3.8",
+   "com.typesafe.play" %% "play" % "2.4.0",
+   "com.typesafe.play" %% "play-java" % "2.4.0",
    "com.sun.jersey" % "jersey-core" % "1.18.1",
    // spring data stuff
    "org.springframework" % "spring-context" % "4.1.1.RELEASE",
