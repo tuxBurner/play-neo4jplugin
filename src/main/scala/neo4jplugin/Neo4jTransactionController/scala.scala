@@ -2,7 +2,7 @@ package controllers
 
 import play.api.mvc._
 import scala.concurrent.Future
-import neo4jplugin.{Neo4JPlugin, ServiceProvider}
+import neo4jplugin.{Neo4jPlugin, Neo4jServiceProvider}
 
 /**
  * Created by tuxburner on 5/14/14.
@@ -18,7 +18,7 @@ object Neo4jTransactionAction extends ActionBuilder[Request]  {
 case class Neo4jTransactionAction[A](action: Action[A]) extends Action[A] {
 
   def apply(request: Request[A]): Future[Result] = {
-    val serviceProvider: ServiceProvider = Neo4JPlugin.get();
+    val serviceProvider: Neo4jServiceProvider = Neo4jPlugin.get();
     val tx = serviceProvider.template.getGraphDatabase.beginTx;
     try {
       val result = action(request)
