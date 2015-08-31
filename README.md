@@ -48,6 +48,7 @@ neo4j.mode="embedded" # mode to run embedded or remote
 neo4j.embeddedDB="target/neo4j-db" # where to put the embedded database
 
 # remote db config
+```
 neo4j.restDB.host="http://localhost:7474/db/data"
 neo4j.restDB.user=""
 neo4j.restDB.password=""
