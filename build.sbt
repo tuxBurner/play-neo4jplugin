@@ -14,9 +14,6 @@ resolvers ++= Seq(
 
 scalaVersion := "2.11.6"
 
-//disable doc gen this is broken @ mom
-//publishArtifact in (Compile, packageDoc) := false
-
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play" % "2.4.2",
   "com.typesafe.play" %% "play-java" % "2.4.2",
