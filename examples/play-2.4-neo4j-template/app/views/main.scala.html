@@ -1,0 +1,31 @@
+@(title: String)(content: Html)
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>@title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+            <!-- CSS -->
+        <link rel="stylesheet" href="@routes.Assets.versioned("lib/bootstrap/css/bootstrap.css")">
+    </head>
+
+    <body>
+            <!-- Part 1: Wrap all page content here -->
+        <div id="wrap">
+                <!-- Begin page content -->
+            @content
+            <div id="push"></div>
+        </div>
+
+        <div id="footer">
+            <div class="container">
+                <p class="muted credit"><a href="https://github.com/tuxBurner/play-neo4jplugin">PlayFramework SpringData Neo4j Plugin</a> by <a href="https://twitter.com/SebasthSeppel">@@SebasthSeppel</a>.</p>
+            </div>
+        </div>
+
+    </body>
+</html>
