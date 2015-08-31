@@ -8,7 +8,122 @@ What i didn't liked that i can't call neo4j in the static way, like Ebean etc...
 
 So here we go, i created this plugin :)
 
-## Versions
+## Current Version
+
+**1.5.0**
+
+* Play2.4 Support.
+* Scala 2.11.6
+* Embedded Database is **NOT WORKING** at the moment. 
+* Now using an own logger: ```<logger name="neo4jplugin.Neo4jPlugin" level="DEBUG" />```
+
+
+## Installation (using sbt)
+
+You will need to add the following resolver in your `build.sbt` file:
+
+```scala
+resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo"
+
+resolvers += "Neo4j Maven Repo" at "http://m2.neo4j.org/content/repositories/releases"
+
+resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
+```
+
+Add a dependency on the following artifact:
+
+```scala
+libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.5.0"
+
+
+Settings for the plugin go into the `conf/application.conf`:
+
+```
+neo4j.serviceProviderClass="neo4j.services.Neo4JServiceProvider" # the provider class which holds the annotated neo4j beans
+neo4j.basepackage="neo4j" # the base package where the entities are located
+
+neo4j.mode="embedded" # mode to run embedded or remote
+
+# embedded db config
+neo4j.embeddedDB="target/neo4j-db" # where to put the embedded database
+
+# remote db config
+neo4j.restDB.host="http://localhost:7474/db/data"
+neo4j.restDB.user=""
+neo4j.restDB.password=""
+```
+
+## Usage
+
+All neo4j relevant stuff must go to `app/neo4j/`
+
+All neo4j repositories go to `app/neo4j/repositories/`
+
+
+You need a class which must extend from `neo4jplugin.Neo4jServiceProvider` and must be configured in the `application
+.conf` under the key `neo4j.serviceProviderClass`:
+
+Example:
+```java
+
+    @Component
+    public class Neo4jServiceProviderImpl extends Neo4jServiceProvider {
+
+      @Autowired
+      public NeoUserRepository neoUserRepository;
+
+      public static Neo4JServiceProvider get() {
+        return Neo4JPlugin.get();
+      }
+    }
+```
+
+To access your repository you can call: `Neo4JServiceProviderImpl.get().neoUserRepository.<do magic neo4j stuff>`
+
+To access the neo4jtemplate you can call: `Neo4JServiceProviderImpl.get().template.<do magic neo4j stuff>`
+
+## Transactions
+
+There is also a `@Neo4jTransactional` annotation which I addopted from the play jpa plugin.
+
+Just annotate your Result with it and it runs in a neo4j Transaction.
+
+Example Java:
+```java
+  @Neo4jTransactional
+  public static Result doSomethingInTransaction(Long id) {
+    Neo4JServiceProviderImpl.get().neoUserRepository.<do magic neo4j stuff>
+    Neo4JServiceProviderImpl.get().neoUserRepository.<do magic neo4j stuff>
+
+    return ok("Woohhoh Neo4jTransaction");
+  }  
+```
+
+For Scala i used the Actionbuilder pattern described at: http://www.playframework.com/documentation/2.2.x/ScalaActionsComposition
+This allows you to combine several actions.
+
+Example Scala:
+```scala
+  def index = Neo4jTransactionAction {
+    Neo4JServiceProviderImpl.get().neoUserRepository.<do magic neo4j stuff>
+    Neo4JServiceProviderImpl.get().neoUserRepository.<do magic neo4j stuff>
+
+    Ok("Woohhoh Neo4jTransaction")
+  }
+```
+
+Take a look into the examples
+
+
+## TODO
+
+* Make the spring configuration configable with the play configuration so the neo4j stuff has not to be in the folder 
+app/neoj do the same with the repositories.
+* Application Context xml configuration.
+
+
+## Old Versions
+
 1.4.4 Remote configuration **neo4j.restDB.caching=true** added. When set the SpringCypherRestGraphDatabase class is used instead of SpringRestGraphDatabase. Thx at @unterstein !
 
 1.4.3 Version lifts: play 2.3.8, neo4j 2.1.7, spring-data-neo4j 3.3.0.RC1
@@ -45,120 +160,3 @@ So here we go, i created this plugin :)
 
 1.0.2: New Spring-Data-2.2.2 Version Dep.
 
-
-
-## Installation (using sbt)
-
-You will need to add the following resolver in your `project/Build.scala` file:
-
-```scala
-resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo"
-
-resolvers += "Neo4j Maven Repo" at "http://m2.neo4j.org/content/repositories/releases"
-```
-
-**!!! For Version 1.3.0 you need also to add !!!**
-```scala
-resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
-```
-
-Add a dependency on the following artifact:
-
-```scala
-libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.4.4"
-```
-
-**!!! For Version 1.3.6/1.4.0/1.4.1/1.4.3/1.4.4 you need to change the scala version !!!**
-```scala
-scalaVersion := "2.10.4"
-```
-
-Activate the plugin in the `conf/play.plugins` like this:
-
-```
-900:neo4jplugin.Neo4JPlugin
-```
-
-Settings for the plugin go into the `conf/application.conf`:
-
-```
-neo4j.serviceProviderClass="neo4j.services.Neo4JServiceProvider" # the provider class which holds the annotated neo4j beans
-neo4j.basepackage="neo4j" # the base package where the entities are located
-
-neo4j.mode="embedded" # mode to run embedded or remote
-
-# embedded db config
-neo4j.embeddedDB="target/neo4j-db" # where to put the embedded database
-
-# remote db config
-neo4j.restDB.host="http://localhost:7474/db/data"
-neo4j.restDB.user=""
-neo4j.restDB.password=""
-neo4j.restDB.caching=true
-
-```
-
-## Usage
-
-All neo4j relevant stuff must go to `app/neo4j/`
-
-All neo4j repositories go to `app/neo4j/repositories/`
-
-
-You need a class which must extend from `neo4jplugin.ServiceProvider` and must be configured in the `application.conf` under the key `neo4j.serviceProviderClass`:
-
-Example:
-```java
-    @Component
-    public class Neo4JServiceProvider extends ServiceProvider {
-
-      @Autowired
-      public NeoUserRepository neoUserRepository;
-
-      public static Neo4JServiceProvider get() {
-        return Neo4JPlugin.get();
-      }
-}
-
-```
-
-To access your repository you can call: `Neo4JServiceProvider.get().neoUserRepository.<do magic neo4j stuff>`
-
-To access the neo4jtemplate you can call: `Neo4JServiceProvider.get().template.<do magic neo4j stuff>`
-
-## Transactions
-
-There is also a `@Transactional` annotation which I addopted from the play jpa plugin.
-
-Just annotate your Result with it and it runs in a neo4j Transaction.
-
-Example Java:
-```java
-  @Transactional
-  public static Result doSomethingInTransaction(Long id) {
-    Neo4JServiceProvider.get().neoUserRepository.<do magic neo4j stuff>
-    Neo4JServiceProvider.get().neoUserRepository.<do magic neo4j stuff>
-
-    return ok("Woohhoh Neo4jTransaction");
-  }  
-```
-
-For Scala i used the Actionbuilder pattern described at: http://www.playframework.com/documentation/2.2.x/ScalaActionsComposition
-This allows you to combine several actions.
-
-Example Scala:
-```scala
-  def index = Neo4jTransactionAction {
-    Neo4JServiceProvider.get().neoUserRepository.<do magic neo4j stuff>
-    Neo4JServiceProvider.get().neoUserRepository.<do magic neo4j stuff>
-
-    Ok("Woohhoh Neo4jTransaction")
-  }
-```
-
-Take a look into the examples
-
-
-## TODO
-
-Make the spring configuration configable with the play configuration so the neo4j stuff has not to be in the folder app/neoj do the same with the repositories.
