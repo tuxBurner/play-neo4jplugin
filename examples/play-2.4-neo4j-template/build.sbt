@@ -11,7 +11,7 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   specs2 % Test,
-  "com.github.tuxBurner" %% "play-neo4jplugin" % "1.5.0",
+  "com.github.tuxBurner" %% "play-neo4jplugin" % "1.5.1-SNAPSHOT",
   "org.webjars" % "bootstrap" % "3.2.0"
 
 )
