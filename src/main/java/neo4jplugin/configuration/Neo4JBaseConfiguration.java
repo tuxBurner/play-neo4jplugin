@@ -3,13 +3,10 @@ package neo4jplugin.configuration;
 import com.typesafe.config.ConfigException;
 import com.typesafe.config.ConfigFactory;
 import neo4jplugin.Neo4jPlugin;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanCreationException;
-import org.springframework.beans.factory.ObjectFactory;
+import org.neo4j.ogm.session.Session;
+import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.auditing.IsNewAwareAuditingHandler;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
-import org.springframework.data.neo4j.lifecycle.AuditingEventListener;
 import play.Logger;
 
 /**
@@ -27,23 +24,23 @@ public class Neo4JBaseConfiguration extends Neo4jConfiguration
    */
   private static String BASE_PACKAGES_CFG = "neo4j.basepackage";
 
+  /**
+   * The base package where to lookup classes for neo4j.
+   */
+  private String basePackages = "neo4j";
+
 
   public Neo4JBaseConfiguration() {
     super();
-
-    // check if baspackes is defined in the configuration if not fall back to neo4j
-    String basePackages;
     try {
       basePackages  = ConfigFactory.load().getString(BASE_PACKAGES_CFG);
     } catch(ConfigException cfge) {
       Logger.warn("Could not find configuration: " + BASE_PACKAGES_CFG + " falling back to: neo4j as basepackage.");
       basePackages = "neo4j";
     }
-
-    setBasePackage(basePackages);
   }
 
-  @Bean
+ /* @Bean
   public AuditingEventListener auditingEventListener() throws Exception {
 
     return new AuditingEventListener(new ObjectFactory<IsNewAwareAuditingHandler>() {
@@ -57,6 +54,17 @@ public class Neo4JBaseConfiguration extends Neo4jConfiguration
         }
       }
     });
+  }      */
+
+  @Bean
+  public SessionFactory getSessionFactory() {
+    // with domain entity base package(s)
+    return new SessionFactory(basePackages);
+  }
+
+
+  public Session getSession() throws Exception {
+    return super.getSession();
   }
 
   /**
@@ -65,7 +73,9 @@ public class Neo4JBaseConfiguration extends Neo4jConfiguration
    * @param block    Block of code to execute.
    */
   public static <T> T withTransaction(play.libs.F.Function0<T> block) throws Throwable {
-    try {
+    T result = block.apply();
+    return result;
+    /*try {
       Neo4jPlugin.get().template.getGraphDatabase().getTransactionManager().begin();
       T result = block.apply();
       Neo4jPlugin.get().template.getGraphDatabase().getTransactionManager().commit();
@@ -75,7 +85,7 @@ public class Neo4JBaseConfiguration extends Neo4jConfiguration
       throw t;
     } finally {
 
-    }
+    }*/
   }
 
 }

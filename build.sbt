@@ -23,8 +23,8 @@ libraryDependencies ++= Seq(
   "com.sun.jersey" % "jersey-core" % "1.19",
   // spring data stuff
   "org.springframework" % "spring-context" % "4.1.6.RELEASE",
-  "org.springframework.data" % "spring-data-neo4j" % "3.4.0.RELEASE",
-  "org.springframework.data" % "spring-data-neo4j-rest" % "3.4.0.RELEASE",
+  "org.springframework.data" % "spring-data-neo4j" % "4.0.0.RELEASE",
+  //"org.springframework.data" % "spring-data-neo4j-rest" % "4.0.0.RELEASE",
   // neo4j stuff
   "org.neo4j" % "neo4j" % "2.3.0",
   // Inject stuff
