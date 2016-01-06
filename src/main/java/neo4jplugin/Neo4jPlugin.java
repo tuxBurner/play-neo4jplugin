@@ -84,8 +84,9 @@ public class Neo4jPlugin
       }
       return;
     }
+    final ClassLoader classLoader = Play.classloader(Play.current());
+
     try {
-      final ClassLoader classLoader = Play.classloader(Play.current());
       serviceProviderClass = Class.forName(serviceProviderClassName, false, classLoader);
       Annotation annotation = serviceProviderClass.getAnnotation(Component.class);
       if (annotation == null) {
@@ -117,6 +118,27 @@ public class Neo4jPlugin
         LOGGER.debug("Loading remote configuration");
       }
       springContext = new AnnotationConfigApplicationContext(RestNeo4jConfig.class);
+    }
+
+    if (mode.equals("own")) {
+      if(LOGGER.isDebugEnabled() == true) {
+        LOGGER.debug("Loading own configuration");
+      }
+      String configurationClassName = ConfigFactory.load().getString("neo4j.ownConfigurationClass");
+      if (StringUtils.isEmpty(configurationClassName) == true) {
+        if (LOGGER.isErrorEnabled()) {
+          LOGGER.error("if you use neo4j.mode = own, you must provide a configuration class neo4j.ownConfigurationClass");
+          return;
+        }
+      }
+      try {
+        Class<?> configurationClass = Class.forName(configurationClassName, false, classLoader);
+        springContext = new AnnotationConfigApplicationContext(configurationClass);
+      } catch (ClassNotFoundException e) {
+        if (LOGGER.isErrorEnabled()) {
+          LOGGER.error("Error while getting Neo4J class for configuration: " + configurationClassName, e);
+        }
+      }
     }
 
 
