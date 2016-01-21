@@ -32,20 +32,22 @@ resolvers += "Spring milestones" at "http://repo.spring.io/milestone"
 
 Add a dependency on the following artifact:
 
-```scala
+```
 libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.5.0"
-
 ```
 
 Settings for the plugin go into the `conf/application.conf`:
-
+```
 neo4j.serviceProviderClass="neo4j.services.Neo4JServiceProvider" # the provider class which holds the annotated neo4j beans
 neo4j.basepackage="neo4j" # the base package where the entities are located
 
 neo4j.mode="embedded" # mode to run embedded or remote
+```
 
 # embedded db config
+```
 neo4j.embeddedDB="target/neo4j-db" # where to put the embedded database
+```
 
 # remote db config
 ```
