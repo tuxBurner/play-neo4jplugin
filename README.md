@@ -56,6 +56,12 @@ neo4j.restDB.user=""
 neo4j.restDB.password=""
 ```
 
+# own configuration class providing
+```
+neo4j.mode="own"
+neo4j.ownConfigurationClass="com.mycompany.neo4j.Configuration"
+```
+
 ## Usage
 
 All neo4j relevant stuff must go to `app/neo4j/`
