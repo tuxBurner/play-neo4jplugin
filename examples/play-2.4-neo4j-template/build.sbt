@@ -2,7 +2,8 @@ name := """Play-2.4-neo4j-template"""
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
+lazy val plugin = RootProject(file("../.."))
+lazy val root = (project in file(".")).enablePlugins(PlayScala).dependsOn(plugin % "compile->compile;test->test")
 
 scalaVersion := "2.11.6"
 
