@@ -1,13 +1,15 @@
 package neo4jplugin;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import com.typesafe.config.ConfigFactory;
 import neo4jplugin.configuration.EmbbededNeo4jConfig;
 import neo4jplugin.configuration.RestNeo4jConfig;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
+import play.Configuration;
+import play.Environment;
 import play.Logger;
 import play.api.Play;
 import play.inject.ApplicationLifecycle;
@@ -39,10 +41,10 @@ public class Neo4jPlugin
 
 
   @Inject
-  public Neo4jPlugin(ApplicationLifecycle applicationLifecycle)
+  public Neo4jPlugin(Environment environment, Configuration configuration, ApplicationLifecycle applicationLifecycle)
   {
 
-    initialize();
+    initialize(environment, configuration);
 
 
     applicationLifecycle.addStopHook(() -> {
@@ -72,11 +74,13 @@ public class Neo4jPlugin
 
   /**
    * This does the initializiation of the plugin by wiring up the springcontext according to the configuration settings.
+   * @param environment the play environment
+   * @param configuration the play configuration
    */
-  private void initialize()
+  private void initialize(Environment environment, Configuration configuration)
   {
 
-    String serviceProviderClassName = ConfigFactory.load().getString(SERVICE_PROVIDER_NAME_CFG);
+    String serviceProviderClassName = configuration.getString(SERVICE_PROVIDER_NAME_CFG);
     if (StringUtils.isEmpty(serviceProviderClassName) == true) {
       if (LOGGER.isErrorEnabled()) {
         LOGGER.error("No configuration for the neo4h ServiceProvider found: " + SERVICE_PROVIDER_NAME_CFG + " must be" +
@@ -84,7 +88,7 @@ public class Neo4jPlugin
       }
       return;
     }
-    final ClassLoader classLoader = Play.classloader(Play.current());
+    final ClassLoader classLoader = environment.classLoader();
 
     try {
       serviceProviderClass = Class.forName(serviceProviderClassName, false, classLoader);
@@ -104,7 +108,7 @@ public class Neo4jPlugin
     }
 
 
-    final String mode = ConfigFactory.load().getString("neo4j.mode");
+    final String mode = configuration.getString("neo4j.mode");
 
     if (mode.equals("embedded")) {
       if(LOGGER.isDebugEnabled() == true) {
@@ -124,7 +128,7 @@ public class Neo4jPlugin
       if(LOGGER.isDebugEnabled() == true) {
         LOGGER.debug("Loading own configuration");
       }
-      String configurationClassName = ConfigFactory.load().getString("neo4j.ownConfigurationClass");
+      String configurationClassName = configuration.getString("neo4j.ownConfigurationClass");
       if (StringUtils.isEmpty(configurationClassName) == true) {
         if (LOGGER.isErrorEnabled()) {
           LOGGER.error("if you use neo4j.mode = own, you must provide a configuration class neo4j.ownConfigurationClass");

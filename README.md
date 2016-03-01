@@ -42,6 +42,9 @@ neo4j.serviceProviderClass="neo4j.services.Neo4JServiceProvider" # the provider 
 neo4j.basepackage="neo4j" # the base package where the entities are located
 
 neo4j.mode="embedded" # mode to run embedded or remote
+
+# activate module
+play.modules.enabled += "neo4jplugin.Neo4jModule"
 ```
 
 # embedded db config

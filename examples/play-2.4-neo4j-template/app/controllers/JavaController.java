@@ -1,10 +1,8 @@
 package controllers;
 
-import com.google.inject.Inject;
 import neo4j.models.World;
 import neo4j.services.GalaxyService;
 import neo4j.services.Neo4jServiceProviderImpl;
-import neo4jplugin.Neo4jPlugin;
 import neo4jplugin.Neo4jTransactional;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -18,10 +16,6 @@ import java.util.List;
  */
 public class JavaController extends Controller
 {
-
-
-  @Inject
-  Neo4jPlugin neo4jPlugin;
 
   @Neo4jTransactional
   public Result index() {
