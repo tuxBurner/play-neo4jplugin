@@ -8,6 +8,7 @@ resolvers ++= Seq(
   "Typesafe Releases" at "http://repo.typesafe.com/typesafe/releases/",
   "Spring releases" at "http://repo.springsource.org/release",
   "Spring milestones" at "http://repo.spring.io/milestone",
+  "spring snapshots" at "http://repo.spring.io/snapshot",
   "Neo4j" at "http://m2.neo4j.org/content/repositories/releases/"
 
 // This line below can cause "uri has authority component" errors.   
@@ -18,17 +19,10 @@ resolvers ++= Seq(
 scalaVersion := "2.11.6"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play" % "2.4.2",
-  "com.typesafe.play" %% "play-java" % "2.4.2",
-  "com.sun.jersey" % "jersey-core" % "1.19",
+  "com.typesafe.play" %% "play" % "2.4.6",
+  "com.typesafe.play" %% "play-java" % "2.4.6",
   // spring data stuff
-  "org.springframework" % "spring-context" % "4.1.6.RELEASE",
-  "org.springframework.data" % "spring-data-neo4j" % "3.4.0.RELEASE",
-  "org.springframework.data" % "spring-data-neo4j-rest" % "3.4.0.RELEASE",
-  // neo4j stuff
-  "org.neo4j" % "neo4j" % "2.3.0-M02",
-  // Inject stuff
-  "javax.inject" % "javax.inject" % "1"
+  "org.springframework.data" % "spring-data-neo4j" % "4.1.0.BUILD-SNAPSHOT"
 )
 
 publishTo <<= version {
