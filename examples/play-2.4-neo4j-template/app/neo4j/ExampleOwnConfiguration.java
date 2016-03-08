@@ -14,29 +14,29 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * @author Johannes Unterstein (unterstein@me.com)
  */
-@EnableTransactionManagement
-@Configuration
-@EnableNeo4jRepositories(basePackages = "neo4j.repositories")
-@ComponentScan("neo4j")
+//@EnableTransactionManagement
+//@Configuration
+//@EnableNeo4jRepositories(basePackages = "neo4j.repositories")
+//@ComponentScan("neo4j")
 public class ExampleOwnConfiguration extends Neo4JBaseConfiguration {
 
-  private static String REST_DB_HOST_CFG_KEY = "neo4j.restDB.host";
-
-  private static String REST_DB_USER_CFG_KEY = "neo4j.restDB.user";
-
-  private static String REST_DB_PASSWORD_CFG_KEY = "neo4j.restDB.password";
-
-  @Bean
-  public Neo4jServer graphDatabaseService()
-  {
-    String restDbHost = ConfigFactory.load().getString(REST_DB_HOST_CFG_KEY);
-    String restDbUser = ConfigFactory.load().getString(REST_DB_USER_CFG_KEY);
-    String restDbPassword = ConfigFactory.load().getString(REST_DB_PASSWORD_CFG_KEY);
-
-    if(Neo4jPlugin.LOGGER.isDebugEnabled() == true) {
-      Neo4jPlugin.LOGGER.debug("Connecting to remote database: "+restDbUser+"@"+restDbHost);
-    }
-
-    return new RemoteServer(restDbHost, restDbUser, restDbPassword);
-  }
+//  private static String REST_DB_HOST_CFG_KEY = "neo4j.restDB.host";
+//
+//  private static String REST_DB_USER_CFG_KEY = "neo4j.restDB.user";
+//
+//  private static String REST_DB_PASSWORD_CFG_KEY = "neo4j.restDB.password";
+//
+//  @Bean
+//  public Neo4jServer graphDatabaseService()
+//  {
+//    String restDbHost = ConfigFactory.load().getString(REST_DB_HOST_CFG_KEY);
+//    String restDbUser = ConfigFactory.load().getString(REST_DB_USER_CFG_KEY);
+//    String restDbPassword = ConfigFactory.load().getString(REST_DB_PASSWORD_CFG_KEY);
+//
+//    if(Neo4jPlugin.LOGGER.isDebugEnabled() == true) {
+//      Neo4jPlugin.LOGGER.debug("Connecting to remote database: "+restDbUser+"@"+restDbHost);
+//    }
+//
+//    return new RemoteServer(restDbHost, restDbUser, restDbPassword);
+//  }
 }

@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import play.Logger;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
