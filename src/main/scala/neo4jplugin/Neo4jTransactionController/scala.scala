@@ -18,20 +18,20 @@ object Neo4jTransactionAction extends ActionBuilder[Request]  {
 case class Neo4jTransactionAction[A](action: Action[A]) extends Action[A] {
 
   def apply(request: Request[A]): Future[Result] = {
-    val serviceProvider: Neo4jServiceProvider = Neo4jPlugin.get();
-    val tx = serviceProvider.template.getGraphDatabase.beginTx;
+    val serviceProvider: Neo4jServiceProvider = Neo4jPlugin.get()
+    val tx = serviceProvider.transactionManager.openTransaction()
     try {
       val result = action(request)
-      tx.success()
+      tx.commit()
       result
     }
     catch {
       case t: Throwable => {
-        tx.failure();
+        tx.rollback()
         throw t
       }
     } finally {
-      tx.close();
+      tx.close()
     }
   }
 

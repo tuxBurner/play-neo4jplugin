@@ -3,13 +3,8 @@ package neo4jplugin.configuration;
 import com.typesafe.config.ConfigException;
 import com.typesafe.config.ConfigFactory;
 import neo4jplugin.Neo4jPlugin;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanCreationException;
-import org.springframework.beans.factory.ObjectFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.auditing.IsNewAwareAuditingHandler;
+import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
-import org.springframework.data.neo4j.lifecycle.AuditingEventListener;
 import play.Logger;
 
 /**
@@ -40,23 +35,30 @@ public class Neo4JBaseConfiguration extends Neo4jConfiguration
       basePackages = "neo4j";
     }
 
-    setBasePackage(basePackages);
+//    setBasePackage(basePackages); FIXME JU
   }
 
-  @Bean
-  public AuditingEventListener auditingEventListener() throws Exception {
+  // FIXME JU
+//  @Bean
+//  public AuditingEventListener auditingEventListener() throws Exception {
+//
+//    return new AuditingEventListener(new ObjectFactory<IsNewAwareAuditingHandler>() {
+//      @Override
+//      public IsNewAwareAuditingHandler getObject() throws BeansException
+//      {
+//        try {
+//          return new IsNewAwareAuditingHandler(neo4jMappingContext());
+//        } catch (Exception e) {
+//          throw new BeanCreationException("Error while creating "+IsNewAwareAuditingHandler.class.getName(),e);
+//        }
+//      }
+//    });
+//  }
 
-    return new AuditingEventListener(new ObjectFactory<IsNewAwareAuditingHandler>() {
-      @Override
-      public IsNewAwareAuditingHandler getObject() throws BeansException
-      {
-        try {
-          return new IsNewAwareAuditingHandler(neo4jMappingContext());
-        } catch (Exception e) {
-          throw new BeanCreationException("Error while creating "+IsNewAwareAuditingHandler.class.getName(),e);
-        }
-      }
-    });
+  @Override
+  public SessionFactory getSessionFactory()
+  {
+    return new SessionFactory("neo4j.models");
   }
 
   /**
@@ -65,17 +67,7 @@ public class Neo4JBaseConfiguration extends Neo4jConfiguration
    * @param block    Block of code to execute.
    */
   public static <T> T withTransaction(play.libs.F.Function0<T> block) throws Throwable {
-    try {
-      Neo4jPlugin.get().template.getGraphDatabase().getTransactionManager().begin();
-      T result = block.apply();
-      Neo4jPlugin.get().template.getGraphDatabase().getTransactionManager().commit();
-      return result;
-    } catch (Throwable t) {
-      Neo4jPlugin.get().template.getGraphDatabase().getTransactionManager().rollback();
-      throw t;
-    } finally {
-
-    }
+      return Neo4jPlugin.withTransaction(block);
   }
 
 }

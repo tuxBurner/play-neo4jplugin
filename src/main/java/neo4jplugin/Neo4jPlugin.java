@@ -2,16 +2,15 @@ package neo4jplugin;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import com.typesafe.config.ConfigFactory;
 import neo4jplugin.configuration.EmbbededNeo4jConfig;
 import neo4jplugin.configuration.RestNeo4jConfig;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.neo4j.ogm.transaction.Transaction;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 import play.Configuration;
 import play.Environment;
 import play.Logger;
-import play.api.Play;
 import play.inject.ApplicationLifecycle;
 import play.libs.F;
 
@@ -25,7 +24,8 @@ import java.lang.annotation.Annotation;
  *         Time: 16:45
  */
 @Singleton
-public class Neo4jPlugin
+public class
+    Neo4jPlugin
 {
 
   public static Logger.ALogger LOGGER = Logger.of(Neo4jPlugin.class);
@@ -49,7 +49,8 @@ public class Neo4jPlugin
 
     applicationLifecycle.addStopHook(() -> {
 
-      Neo4jPlugin.get().template.getGraphDatabaseService().shutdown();
+      // FIXME JU
+//      Neo4jPlugin.get().template.getGraphDatabaseService().shutdown();
       springContext.stop();
 
       // TODO clean the application lifecycle here
@@ -165,15 +166,18 @@ public class Neo4jPlugin
    */
   public static <T> T withTransaction(play.libs.F.Function0<T> block) throws Throwable
   {
+    Transaction transaction = null;
     try {
-      Neo4jPlugin.get().template.getGraphDatabase().getTransactionManager().begin();
+      transaction = Neo4jPlugin.get().transactionManager.openTransaction();
       T result = block.apply();
-      Neo4jPlugin.get().template.getGraphDatabase().getTransactionManager().commit();
+      transaction.commit();
       return result;
     } catch (Throwable t) {
-      Neo4jPlugin.get().template.getGraphDatabase().getTransactionManager().rollback();
+      if (transaction != null) {
+        transaction.rollback();
+      }
       if (LOGGER.isErrorEnabled() == true) {
-        LOGGER.error("An error happend while in transaction: ", t);
+        LOGGER.error("An error happened while in transaction: ", t);
       }
       throw t;
     } finally {

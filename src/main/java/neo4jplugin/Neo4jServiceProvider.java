@@ -1,7 +1,9 @@
 package neo4jplugin;
 
+
+import org.neo4j.ogm.transaction.TransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
+import org.springframework.data.neo4j.template.Neo4jTemplate;
 
 /**
  * This is the main class of the Neo4jServiceProvider. This must be overwritten by you and can than hold some spring
@@ -30,4 +32,7 @@ public class Neo4jServiceProvider
 
   @Autowired
   public Neo4jTemplate template;
+
+  @Autowired
+  public TransactionManager transactionManager;
 }

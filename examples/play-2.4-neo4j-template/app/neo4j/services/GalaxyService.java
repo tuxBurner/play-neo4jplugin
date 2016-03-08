@@ -2,12 +2,6 @@ package neo4j.services;
 
 import neo4j.models.World;
 import neo4j.repositories.WorldRepository;
-import org.neo4j.graphalgo.GraphAlgoFactory;
-import org.neo4j.graphdb.Direction;
-import org.neo4j.graphdb.Node;
-import org.neo4j.graphdb.Path;
-import org.neo4j.helpers.collection.IteratorUtil;
-import org.neo4j.kernel.Traversal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import play.Logger;
@@ -31,8 +25,14 @@ public class GalaxyService
   public long getNumberOfWorlds() {
     return worldRepository.count();
   }
-  public List<World> getAllWorlds() {
-    return new ArrayList<World>(IteratorUtil.asCollection(worldRepository.findAll()));
+
+  public List<World> getAllWorlds()
+  {
+    ArrayList<World> worlds = new ArrayList<>();
+    for (World world : worldRepository.findAll()) {
+      worlds.add(world);
+    }
+    return worlds;
   }
 
   public List<World> makeSomeWorldsAndRelations() {
@@ -71,22 +71,25 @@ public class GalaxyService
     return worlds;
   }
 
+  // FIXME JU
   public List<World> getWorldPath(final World worldA, final World worldB) {
-    Path path = GraphAlgoFactory.shortestPath(Traversal.expanderForTypes(World.RelTypes.REACHABLE_BY_ROCKET, Direction.OUTGOING).add(World.RelTypes.REACHABLE_BY_ROCKET), 100)
-        .findSinglePath(Neo4jServiceProviderImpl.get().template.getNode(worldA.id), Neo4jServiceProviderImpl.get().template.getNode(worldB.id));
-    if (path == null) {
-      return Collections.emptyList();
-    }
-    return convertNodesToWorlds(path);
+//    Path path = GraphAlgoFactory.shortestPath(Traversal.expanderForTypes(World.RelTypes.REACHABLE_BY_ROCKET, RelationShip.OUTGOING).add(World.RelTypes.REACHABLE_BY_ROCKET), 100)
+//        .findSinglePath(Neo4jServiceProviderImpl.get().template.getNode(worldA.id), Neo4jServiceProviderImpl.get().template.getNode(worldB.id));
+//    if (path == null) {
+//      return Collections.emptyList();
+//    }
+//    return convertNodesToWorlds(path);
+    return new ArrayList<>();
   }
 
-  private List<World> convertNodesToWorlds(final Path list) {
-    final List<World> result = new LinkedList<World>();
-    for (Node node : list.nodes()) {
-      result.add(Neo4jServiceProviderImpl.get().template.load(node, World.class));
-    }
-    return result;
-  }
+//
+//  private List<World> convertNodesToWorlds(final Path list) {
+//    final List<World> result = new LinkedList<World>();
+//    for (Node node : list.nodes()) {
+//      result.add(Neo4jServiceProviderImpl.get().template.load(node, World.class));
+//    }
+//    return result;
+//  }
 
   private World createWorld(String name, int moons) {
     return worldRepository.save(new World(name, moons));

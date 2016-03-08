@@ -1,12 +1,9 @@
 package neo4j.models;
 
-import org.neo4j.graphdb.Direction;
-import org.neo4j.graphdb.RelationshipType;
-import org.springframework.data.neo4j.annotation.Fetch;
-import org.springframework.data.neo4j.annotation.GraphId;
-import org.springframework.data.neo4j.annotation.Indexed;
-import org.springframework.data.neo4j.annotation.NodeEntity;
-import org.springframework.data.neo4j.annotation.RelatedTo;
+
+import org.neo4j.ogm.annotation.GraphId;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
 import java.util.Set;
 
@@ -23,14 +20,14 @@ public class World
   @GraphId
   public Long id;
 
-  @Indexed
+//  @Indexed FIXME JU
   public String name;
 
-  @Indexed
+//  @Indexed FIXME JU
   public int moons;
 
-  @Fetch
-  @RelatedTo(type = "REACHABLE_BY_ROCKET", direction = Direction.OUTGOING)
+//  @Fetch FIXME JU
+  @Relationship(type = "REACHABLE_BY_ROCKET", direction = Relationship.OUTGOING)
   public Set<World> reachableByRocket;
 
   public World(String name, int moons) {
@@ -50,7 +47,7 @@ public class World
     return String.format("World{name='%s', moons=%d}", name, moons);
   }
 
-  public enum RelTypes implements RelationshipType
+  public enum RelTypes // implements RelationshipType FIXME JU
   {
     REACHABLE_BY_ROCKET
   }
