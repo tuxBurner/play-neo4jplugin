@@ -24,8 +24,7 @@ import java.lang.annotation.Annotation;
  *         Time: 16:45
  */
 @Singleton
-public class
-    Neo4jPlugin
+public class Neo4jPlugin
 {
 
   public static Logger.ALogger LOGGER = Logger.of(Neo4jPlugin.class);
