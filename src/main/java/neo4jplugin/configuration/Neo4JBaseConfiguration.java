@@ -33,8 +33,6 @@ public abstract class Neo4JBaseConfiguration extends Neo4jConfiguration
       Logger.warn("Could not find configuration: " + BASE_PACKAGES_CFG + " falling back to: neo4j as basepackage.");
       basePackages = "neo4j";
     }
-
-//    setBasePackage(basePackages); FIXME SDN4.1
   }
 
   // FIXME SDN4.1
