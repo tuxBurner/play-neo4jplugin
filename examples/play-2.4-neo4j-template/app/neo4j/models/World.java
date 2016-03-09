@@ -48,9 +48,4 @@ public class World
     return String.format("World{name='%s', moons=%d}", name, moons);
   }
 
-  public enum RelTypes // implements RelationshipType FIXME SDN4.1
-  {
-    REACHABLE_BY_ROCKET
-  }
-
 }
