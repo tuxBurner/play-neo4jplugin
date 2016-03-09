@@ -2,6 +2,7 @@ package neo4jplugin.configuration;
 
 import com.typesafe.config.ConfigFactory;
 import neo4jplugin.Neo4jPlugin;
+import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -38,5 +39,15 @@ public class RestNeo4jConfig extends Neo4JBaseConfiguration
     }
 
     return new RemoteServer(restDbHost, restDbUser, restDbPassword);
+  }
+
+  @Override
+  public SessionFactory getSessionFactory()
+  {
+    org.neo4j.ogm.config.Configuration configuration = new org.neo4j.ogm.config.Configuration();
+    configuration.driverConfiguration().setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver");
+    configuration.driverConfiguration().setURI(ConfigFactory.load().getString(REST_DB_HOST_CFG_KEY));
+    configuration.driverConfiguration().setCredentials(ConfigFactory.load().getString(REST_DB_USER_CFG_KEY), ConfigFactory.load().getString(REST_DB_PASSWORD_CFG_KEY));
+    return new SessionFactory(configuration, "neo4j.models");
   }
 }

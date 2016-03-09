@@ -3,8 +3,6 @@ package neo4jplugin.configuration;
 import com.typesafe.config.ConfigException;
 import com.typesafe.config.ConfigFactory;
 import neo4jplugin.Neo4jPlugin;
-import org.neo4j.ogm.config.Configuration;
-import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
 import play.Logger;
 
@@ -15,7 +13,7 @@ import play.Logger;
  *         Date: 27.08.15
  *         Time: 21:04
  */
-public class Neo4JBaseConfiguration extends Neo4jConfiguration
+public abstract class Neo4JBaseConfiguration extends Neo4jConfiguration
 {
 
   /**
@@ -55,14 +53,6 @@ public class Neo4JBaseConfiguration extends Neo4jConfiguration
 //      }
 //    });
 //  }
-
-  @Override
-  public SessionFactory getSessionFactory()
-  {
-    Configuration configuration = new Configuration();
-    configuration.driverConfiguration().setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver");
-    return new SessionFactory(configuration, "neo4j.models");
-  }
 
   /**
    * Run a block of code in a NEO4J transaction.

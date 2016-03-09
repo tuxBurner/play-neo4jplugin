@@ -4,6 +4,7 @@ package neo4jplugin.configuration;
 import com.typesafe.config.ConfigFactory;
 import neo4jplugin.Neo4jPlugin;
 import org.apache.commons.lang3.StringUtils;
+import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -47,5 +48,11 @@ public class EmbbededNeo4jConfig extends Neo4JBaseConfiguration
 //
 //    return graphDatabaseFactory.newEmbeddedDatabase(embeddedStore);
 //  }
+
+  @Override
+  public SessionFactory getSessionFactory()
+  {
+    return new SessionFactory("neo4j.models");
+  }
 }
 
