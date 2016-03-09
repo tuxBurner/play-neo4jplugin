@@ -1,10 +1,7 @@
 package neo4jplugin.configuration;
 
-import com.typesafe.config.ConfigException;
-import com.typesafe.config.ConfigFactory;
 import neo4jplugin.Neo4jPlugin;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
-import play.Logger;
 
 /**
  *
@@ -16,23 +13,8 @@ import play.Logger;
 public abstract class Neo4JBaseConfiguration extends Neo4jConfiguration
 {
 
-  /**
-   * Config key which defines where the base packages are located.
-   */
-  private static String BASE_PACKAGES_CFG = "neo4j.basepackage";
-
-
   public Neo4JBaseConfiguration() {
     super();
-
-    // check if baspackes is defined in the configuration if not fall back to neo4j
-    String basePackages;
-    try {
-      basePackages  = ConfigFactory.load().getString(BASE_PACKAGES_CFG);
-    } catch(ConfigException cfge) {
-      Logger.warn("Could not find configuration: " + BASE_PACKAGES_CFG + " falling back to: neo4j as basepackage.");
-      basePackages = "neo4j";
-    }
   }
 
   // FIXME SDN4.1

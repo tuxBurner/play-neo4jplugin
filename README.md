@@ -39,7 +39,6 @@ libraryDependencies += "com.github.tuxBurner" %% "play-neo4jplugin" % "1.5.0"
 Settings for the plugin go into the `conf/application.conf`:
 ```
 neo4j.serviceProviderClass="neo4j.services.Neo4JServiceProvider" # the provider class which holds the annotated neo4j beans
-neo4j.basepackage="neo4j" # the base package where the entities are located
 
 neo4j.mode="embedded" # mode to run embedded or remote
 
