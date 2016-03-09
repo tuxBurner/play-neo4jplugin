@@ -34,7 +34,7 @@ public abstract class Neo4JBaseConfiguration extends Neo4jConfiguration
       basePackages = "neo4j";
     }
 
-//    setBasePackage(basePackages); FIXME JU
+//    setBasePackage(basePackages); FIXME SDN4.1
   }
 
   // FIXME SDN4.1
