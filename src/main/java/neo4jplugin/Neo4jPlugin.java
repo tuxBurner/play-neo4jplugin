@@ -48,7 +48,7 @@ public class Neo4jPlugin
 
     applicationLifecycle.addStopHook(() -> {
 
-      // FIXME JU
+      // FIXME SDN4.1
 //      Neo4jPlugin.get().template.getGraphDatabaseService().shutdown();
       springContext.stop();
 

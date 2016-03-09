@@ -21,13 +21,13 @@ public class World
   @GraphId
   public Long id;
 
-//  @Indexed FIXME JU
+//  @Indexed FIXME SDN4.1
   public String name;
 
-//  @Indexed FIXME JU
+//  @Indexed FIXME SDN4.1
   public int moons;
 
-//  @Fetch FIXME JU
+//  @Fetch FIXME SDN4.1
   @Relationship(type = "REACHABLE_BY_ROCKET", direction = Relationship.OUTGOING)
   public Set<World> reachableByRocket = new HashSet<>();
 
@@ -48,7 +48,7 @@ public class World
     return String.format("World{name='%s', moons=%d}", name, moons);
   }
 
-  public enum RelTypes // implements RelationshipType FIXME JU
+  public enum RelTypes // implements RelationshipType FIXME SDN4.1
   {
     REACHABLE_BY_ROCKET
   }

@@ -69,7 +69,7 @@ public class GalaxyService
     return worlds;
   }
 
-  // FIXME JU
+  // FIXME SDN4.1
   public List<World> getWorldPath(final World worldA, final World worldB) {
 //    Path path = GraphAlgoFactory.shortestPath(Traversal.expanderForTypes(World.RelTypes.REACHABLE_BY_ROCKET, RelationShip.OUTGOING).add(World.RelTypes.REACHABLE_BY_ROCKET), 100)
 //        .findSinglePath(Neo4jServiceProviderImpl.get().template.getNode(worldA.id), Neo4jServiceProviderImpl.get().template.getNode(worldB.id));
