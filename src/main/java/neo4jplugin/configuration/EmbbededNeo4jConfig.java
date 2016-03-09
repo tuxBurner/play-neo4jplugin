@@ -24,7 +24,7 @@ import java.io.File;
 public class EmbbededNeo4jConfig extends Neo4JBaseConfiguration
 {
 
-  // FIXME JU
+  // FIXME SDN4.1
 //  /**
 //   * Config key which defines where the embedded database path is.
 //   */

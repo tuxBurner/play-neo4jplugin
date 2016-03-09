@@ -37,7 +37,7 @@ public abstract class Neo4JBaseConfiguration extends Neo4jConfiguration
 //    setBasePackage(basePackages); FIXME JU
   }
 
-  // FIXME JU
+  // FIXME SDN4.1
 //  @Bean
 //  public AuditingEventListener auditingEventListener() throws Exception {
 //
