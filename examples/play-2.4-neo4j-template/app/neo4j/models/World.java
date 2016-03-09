@@ -5,6 +5,7 @@ import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -28,7 +29,7 @@ public class World
 
 //  @Fetch FIXME JU
   @Relationship(type = "REACHABLE_BY_ROCKET", direction = Relationship.OUTGOING)
-  public Set<World> reachableByRocket;
+  public Set<World> reachableByRocket = new HashSet<>();
 
   public World(String name, int moons) {
     this.name = name;

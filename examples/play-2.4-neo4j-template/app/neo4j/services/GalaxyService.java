@@ -77,7 +77,7 @@ public class GalaxyService
 //      return Collections.emptyList();
 //    }
 //    return convertNodesToWorlds(path);
-    return new ArrayList<>();
+    return getAllWorlds();
   }
 
 //

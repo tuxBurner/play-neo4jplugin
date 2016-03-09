@@ -1,7 +1,7 @@
 package neo4jplugin;
 
 
-import org.neo4j.ogm.transaction.TransactionManager;
+import org.neo4j.ogm.session.Neo4jSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.template.Neo4jOperations;
 
@@ -34,5 +34,5 @@ public class Neo4jServiceProvider
   public Neo4jOperations template;
 
   @Autowired
-  public TransactionManager transactionManager;
+  public Neo4jSession session;
 }

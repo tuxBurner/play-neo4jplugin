@@ -167,7 +167,7 @@ public class Neo4jPlugin
   {
     Transaction transaction = null;
     try {
-      transaction = Neo4jPlugin.get().transactionManager.openTransaction();
+      transaction = Neo4jPlugin.get().session.beginTransaction();
       T result = block.apply();
       transaction.commit();
       return result;
